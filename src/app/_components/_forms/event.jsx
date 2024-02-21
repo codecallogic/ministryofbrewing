@@ -189,13 +189,13 @@ const NewEvent = ({
                 id="date"
               />
               { event.description &&  <div className="p-3 bg-gray-200" dangerouslySetInnerHTML={{ __html: event.description }}></div>}
-              <Editor
+              {/* <Editor
                 editorState={editorState}
                 onEditorStateChange={setEditorState}
                 wrapperClassName="wrapper-class"
                 editorClassName="editor-class"
                 toolbarClassName="toolbar-class"
-              />
+              /> */}
             </div>
           </div>
       </div>
