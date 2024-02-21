@@ -1,10 +1,11 @@
 "use client"
 import SVG from '@/app/_libs/svg'
 import { useState, useEffect, useCallback } from 'react'
-// import { EditorState } from 'draft-js';
-// import { Editor } from 'react-draft-wysiwyg';
-// import { convertToHTML } from 'draft-convert';
-// import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { EditorState } from 'draft-js';
+import dynamic from 'next/dynamic';
+const Editor = dynamic(() => import('react-draft-wysiwyg').then((mod) => mod.Editor), { ssr: false });
+import { convertToHTML } from 'draft-convert';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 
 //// COMPONENTS
@@ -189,13 +190,13 @@ const NewEvent = ({
                 id="date"
               />
               { event.description &&  <div className="p-3 bg-gray-200" dangerouslySetInnerHTML={{ __html: event.description }}></div>}
-              {/* <Editor
+              <Editor
                 editorState={editorState}
                 onEditorStateChange={setEditorState}
                 wrapperClassName="wrapper-class"
                 editorClassName="editor-class"
                 toolbarClassName="toolbar-class"
-              /> */}
+              />
             </div>
           </div>
       </div>
