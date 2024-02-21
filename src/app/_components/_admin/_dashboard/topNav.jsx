@@ -1,6 +1,7 @@
 
 import SVG from '@/app/_libs/svg'
 import { useState } from 'react'
+import Cookies from 'universal-cookie';
 
 //// HELPERS
 import { initApp } from '@/app/_helpers/main'
@@ -13,7 +14,20 @@ const TopNav = ({
   user
 }) => {
 
+  const uCookies = new Cookies();
   const [menu, setMenu] = useState(false)
+
+  const logoutUser = () => {
+
+    try {
+      uCookies.remove('adminToken', { path: `${process.env.NEXT_SITE_URL}/admin` });
+      uCookies.remove('adminUser', { path: `${process.env.NEXT_SITE_URL}/admin` });
+    } catch (error) {
+      console.log(error)
+    }
+    
+  }
+
   
   return (
     <div className="w-full h-[120px] flex items-center px-[50px] bg-[#FFF] shadow-lg dark:bg-darkSchemeOne z-10">
@@ -109,7 +123,8 @@ const TopNav = ({
               className='px-5 py-3 text-black text-[16px] hover:bg-black hover:text-white transition-all ease-in-out rounded-xl'
               onClick={() => (
                 dispatch(logout()),
-                router.push('/')
+                logoutUser(),
+                router.push('/admin/login')
               )}
             >
               Logout

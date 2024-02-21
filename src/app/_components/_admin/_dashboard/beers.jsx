@@ -92,8 +92,8 @@ const Beers = ({
               <div className="flex flex-col w-[200px]">
                 <h1 className="text-[18px] font-[600] font-poppins">Beer</h1>
                 <div className="flex flex-col items-start py-1">
-                  <div className="ml-3 font-poppins text-[16px] font-[400] text-[#717579]">Quantity: {item.avb ? item.avb : 'no avb'}</div>
-                  <div className="ml-3 font-poppins text-[16px] font-[400] text-[#717579]">Price Sqrft: {item.style ? item.style : 'no style'}</div>
+                  <div className="ml-3 font-poppins text-[16px] font-[400] text-[#717579]">avb: {item.avb ? item.avb : 'no avb'}</div>
+                  <div className="ml-3 font-poppins text-[16px] font-[400] text-[#717579]">style: {item.style ? item.style : 'no style'}</div>
                 </div>
               </div>
               <div className="absolute top-3 right-5 hover:cursor-pointer">

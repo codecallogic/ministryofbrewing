@@ -20,8 +20,8 @@ export const auth = createSlice({
     },
     logout: (state, action) => {
 
-      deleteCookie('user')
-      deleteCookie('token')
+      deleteCookie('adminUser')
+      deleteCookie('adminToken')
       
       return {
         value: {

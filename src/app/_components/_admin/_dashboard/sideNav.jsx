@@ -81,6 +81,19 @@ const Nav = ({
             </SVG>
             <span className={`text-[18px] leading-[30px] ` + ( view == 'beers' ? ' font-[700] ' : '' ) }>Beers</span>
           </div>
+          <div
+            className={`w-[303px] px-[50px] mt-[12px] h-[60px] flex items-center gap-x-[30px] hover:cursor-pointer ` + ( view == 'events' ? 'text-white border-l-[9px] border-white tab bg-schemefour rounded-br-[150px] rounded-tr-[20px]' : ' text-white' )}
+            onClick={() => dispatch(changeView('events'), initApp())}
+          >
+            <SVG
+              svg={'event'}
+              width={24}
+              height={24}
+              schemeOne={'white'}
+            >
+            </SVG>
+            <span className={`text-[18px] leading-[30px] ` + ( view == 'events' ? ' font-[700] ' : '' ) }>Events</span>
+          </div>
         </div>
       </div>
     </div>
