@@ -1,10 +1,10 @@
 "use client"
 import SVG from '@/app/_libs/svg'
 import { useState, useEffect, useCallback } from 'react'
-import { EditorState } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
-import { convertToHTML } from 'draft-convert';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+// import { EditorState } from 'draft-js';
+// import { Editor } from 'react-draft-wysiwyg';
+// import { convertToHTML } from 'draft-convert';
+// import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 
 //// COMPONENTS
