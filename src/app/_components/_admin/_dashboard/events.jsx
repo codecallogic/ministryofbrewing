@@ -59,6 +59,18 @@ const Events = ({
         </div>
       }
     </div>
+    <div 
+      className="px-[60px] pt-[20px] flex items-center bg-white gap-x-3 hover:cursor-pointer"
+      onClick={() => dispatch(changeView('dashboard'))}
+    >
+      <SVG
+        svg={'arrowLeft'}
+        width={20}
+        height={20}
+        schemeOne={'#132A4A'}
+      ></SVG>
+      <span>Go back</span>
+    </div>
     <div className="px-[50px] pt-[20px] bg-white min-h-screen">
       <div className="flex items-center bg-schemetwo p-5 rounded-xl">
         <h1 className="text-[18px] font-poppins font-[600] text-white">All Events</h1>
