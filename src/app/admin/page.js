@@ -20,7 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { login, logout } from "@/app/_redux/features/authSlice";
 import { changeView, changePopup, changeEdit } from "@/app/_redux/features/navigationSlice";
 import { changeBeerValue, editBeer, changeBeerImages, resetBeer } from "../_redux/features/beerSlice";
-import { changeEventValue, editEvent, resetEvent } from "../_redux/features/eventSlice";
+import { changeEventValue, editEvent, changeEventImages, resetEvent } from "../_redux/features/eventSlice";
 
 ///// QUERIES
 import GET_USER from '@/app/_queries/fetchUser'
@@ -35,6 +35,7 @@ import DELETE_BEER_IMAGE from '@/app/_mutations/deleteBeerImage'
 import NEW_EVENT from '@/app/_mutations/newEvent'
 import UPDATE_EVENT from '@/app/_mutations/updateEvent'
 import DELETE_EVENT from '@/app/_mutations/deleteEvent'
+import DELETE_EVENT_IMAGE from '@/app/_mutations/deleteEventImage'
 
 const Admin = ({}) => {
 
@@ -71,6 +72,7 @@ const Admin = ({}) => {
 
   const [newEvent, { dataNewEvent, loadingNewEvent, errorNewEvent }] = useMutation(NEW_EVENT, { refetchQueries: [ GET_EVENTS ]})
   const [updateEvent, { dataUpdateEvent, loadingUpdateEvent, errorUpdateEvent}] = useMutation(UPDATE_EVENT, { refetchQueries: [ GET_EVENTS ]})
+  const [deleteEventImage, { dataDeleteEventImage, loadingDeleteEventImage, errorDeleteEventImage}] = useMutation(DELETE_EVENT_IMAGE, { refetchQueries: [ GET_EVENTS ]})
   const [deleteEvent, { dataDeleteEvent, loadingDeleteEvent, errorDeleteEvent}] = useMutation(DELETE_EVENT, { refetchQueries: [ GET_EVENTS ]})
 
   useEffect(() => {
@@ -199,6 +201,7 @@ const Admin = ({}) => {
             changePopup={changePopup}
             changeEdit={changeEdit}
             changeEventValue={changeEventValue}
+            changeEventImages={changeEventImages}
             event={event}
             newEvent={newEvent}
             resetEvent={resetEvent}
@@ -206,6 +209,7 @@ const Admin = ({}) => {
             edit={edit}
             updateEvent={updateEvent}
             refetch={refetchEvents}
+            deleteEventImage={deleteEventImage}
           >
           </NewEvent>
         }

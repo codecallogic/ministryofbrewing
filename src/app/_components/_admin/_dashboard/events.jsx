@@ -82,6 +82,24 @@ const Events = ({
             className="w-full rounded-[20px] px-3 py-3 h-[200px] shadow-lg flex items-start gap-x-5 gap-y-2 max-xl:h-[100%] max-xl:items-start max-xl:justify-center max-xl:w-[100%] relative"
           >
             <h3 className="text-[18px] font-poppins font-[500] text-gol">
+              <div className="w-[230px] h-[150px]">
+                {item.images.length > 0 && 
+                  <img 
+                    className="w-full h-full bg-cover rounded-lg"
+                    src={item.images[0].url} 
+                    alt="" 
+                  />
+                }
+                {!item.images.length && 
+                  <img 
+                    className="w-full h-full bg-cover rounded-lg"
+                    src='https://via.placeholder.com/300' 
+                    alt="" 
+                  />
+                }
+              </div>
+            </h3>
+            <h3 className="text-[18px] font-poppins font-[500] text-gol">
               <span>{item.name ? item.name : 'no name'}</span>
               <div className="flex flex-col items-start py-1">
                 <div className="ml-3 font-poppins text-[16px] font-[400] text-[#717579]">date: {item.date ? item.date : 'no date'}</div>

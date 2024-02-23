@@ -6,11 +6,14 @@ import dynamic from 'next/dynamic';
 const Editor = dynamic(() => import('react-draft-wysiwyg').then((mod) => mod.Editor), { ssr: false });
 import { convertToHTML } from 'draft-convert';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { useS3Upload } from "next-s3-upload"
 
 //// COMPONENTS
 import InputField from './inputField'
 import Button from './button'
+import UploadButton from './fileUploadButton'
 
 ///// HELPERS
 import { checkObjectValues, removeItemByIndex } from '@/app/_helpers/main'
@@ -19,13 +22,15 @@ const NewEvent = ({
   dispatch,
   changePopup,
   changeEventValue,
+  changeEventImages,
   event,
   newEvent,
   resetEvent,
   changeView,
   edit,
   updateEvent,
-  refetch
+  refetch,
+  deleteEventImage
 }) => {
 
   const [message, setMessage]                         = useState('')
@@ -33,24 +38,40 @@ const NewEvent = ({
   const [images, setImages]                           = useState([])
   const [convertedContent, setConvertedContent]       = useState(null);
   const [editorState, setEditorState]                 = useState(EditorState.createEmpty())
+  const [startDate, setStartDate]                     = useState(event.date ? event.date : new Date());
+  const { FileInput, openFileDialog, uploadToS3 }     = useS3Upload();
 
   const submitNewEvent = async () => {
-
+    
     try {
 
+      let array = []
       setLoading('createEvent')
+      
+      if(images){
+        const updatedPromises = await Promise.all(images.map(async (item, idx) => {
+          if (!item.url) {
+            let { url } = await uploadToS3(item);
+            array.push({ url: url })
+          } else {
+            array.push(item)
+          }
+        }))        
+      }
       
       const response = await newEvent({
         variables: {
           name: event.name,
           description: convertedContent,
-          date: event.date
+          date: event.date,
+          images: array
         }
       })
 
       setLoading('')
       dispatch(resetEvent())
       setMessage(response.data.newEvent.message)
+      setImages([])
       
     } catch (error) {
       console.log(error)
@@ -61,17 +82,34 @@ const NewEvent = ({
   }
 
   const submitUpdateEvent = async () => {
-
+    
     try {
 
+      let array = []
       setLoading('updateEvent')
+      
+      if(images){
+
+        const updatedPromises = await Promise.all(images.map(async (item, idx) => {
+          if (!item.url) {
+            let { url } = await uploadToS3(item);
+            array.push({ url: url })
+          } else {
+            array.push(item)
+          }
+        }))
+
+      }
+
+      setImages(array)
 
       const response = await updateEvent({
         variables: {
           id: event.id,
           name: event.name,
           description: convertedContent !== '<p></p>' ? convertedContent : event.description,
-          date: event.date
+          date: event.date,
+          images: array
         }
       })
 
@@ -86,11 +124,48 @@ const NewEvent = ({
     
   }
 
+  const deleteImage = async (url) => {
+
+    setLoading(`deleteEventImage-${url}`)
+
+    try {
+
+      const response = await deleteEventImage({
+        variables: {
+          id: event.id,
+          images: images,
+          url: url
+        }
+      })
+
+      let newArray        = images.filter((item) => item.url !== url)
+
+      refetch()
+      setLoading('')
+      setImages(newArray)
+      setMessage(response.data.deleteEventImage.message)
+      
+    } catch (error) {
+      console.log(error)
+      if(error) setMessage(error.message)
+    }
+    
+  }
+
   useEffect(() => {
     let html = convertToHTML(editorState.getCurrentContent());
     setConvertedContent(html);
   }, [editorState]);
 
+  useEffect(() => {
+    if(event) setImages(event.images)
+  }, [event])  
+
+  useEffect(() => {
+    const date = new Date(startDate)
+    const regularDateFormat = date.toLocaleDateString()
+    dispatch(changeEventValue({ value: regularDateFormat, type: 'date' }))
+  }, [startDate])
   
   return (
     <div id="default-modal" tabIndex="-1" aria-hidden="true" className="overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex bg-[rgba(0, 0, 0, 0.5)] justify-center items-center w-full md:inset-0 h-[calc(100%)] max-h-full bg-black/50">
@@ -181,14 +256,85 @@ const NewEvent = ({
                 stateMethod={changeEventValue}
                 id="name"
               />
-              <InputField 
+              {/* <InputField 
                 label="date"
                 item={event}
                 property={'date'}
                 dispatch={dispatch}
                 stateMethod={changeEventValue}
                 id="date"
-              />
+              /> */}
+              {/* { event.date &&  <div className="p-3 bg-gray-200">Current date: {event.date}</div>} */}
+              <div className="w-[100%] border-schemefour border-[1px] rounded-md py-3">
+                <DatePicker 
+                  className="datepicker"
+                  selected={startDate} 
+                  onChange={(date) => (
+                    setStartDate(date)
+                  )} 
+                />
+              </div>
+              <UploadButton
+                svg={true}
+                svgType={'upload'}
+                svgWidth={40}
+                svgHeight={40}
+                svgColor={'#B78514'}
+                label={'Upload Images'}
+                formType={'file'}
+                id="imageFiles"
+                item={event}
+                property={'images'}
+                dispatch={dispatch}
+                stateMethod={changeEventImages}
+                setMessage={setMessage}
+                setImages={setImages}
+                images={images}
+              >
+              </UploadButton>
+              {images.length == 0 &&
+                 <a 
+                 className="w-full mt-2 rounded-xl"
+                 target="_blank" 
+                 rel="noreferrer"
+                 >
+                   <img 
+                    className="w-full mt-2 rounded-xl"
+                    src='https://via.placeholder.com/300'
+                   />
+                 </a>
+              }
+              {images.length > 0 && images.map((item, idx) => (
+                <a 
+                key={idx} 
+                onClick={() => window.open(item.url ? item.url : URL.createObjectURL(item), '_blank')}
+                className="w-full relative rounded-2xl mt-2"
+                target="_blank" 
+                rel="noreferrer"
+                >
+                  <img 
+                    className="rounded-2xl bg-cover"
+                    src={item.url ? item.url : URL.createObjectURL(item)}
+                  />
+                  <div 
+                    className="absolute top-3 right-3 w-[30px] h-[30px] rounded-[50%] flex justify-center items-center hover:cursor-pointer"
+                    onClick={(e) => (e.stopPropagation(), images[idx].url ? deleteImage(item.url) : setImages(removeItemByIndex(idx, images))) }
+                  >
+                  { loading == `deleteEventImage-${item.url}` 
+                    ? 
+                    <div className="loading border-r-gold after:border-r-gold before:border-l-gold mr-3"></div>
+                    :
+                    <SVG 
+                      svg={'close'}
+                      width={20}
+                      height={20}
+                      schemeOne={'black'}
+                    >
+                    </SVG>
+                  }
+                  </div>
+                </a>
+              ))}
               { event.description &&  <div className="p-3 bg-gray-200" dangerouslySetInnerHTML={{ __html: event.description }}></div>}
               <Editor
                 editorState={editorState}

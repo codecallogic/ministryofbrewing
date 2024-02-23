@@ -6,6 +6,9 @@ query allEvents($id: ID!, $token: String!) {
     id,
     name,
     description,
-    date
+    date,
+    images {
+      url
+    }
   }
 }`

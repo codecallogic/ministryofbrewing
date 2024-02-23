@@ -4,12 +4,14 @@ export default gql`
 mutation newEvent(
     $name: String!,
     $description: String!,
-    $date: String!
+    $date: String!,
+    $images: [ImageInputType!]!
 ) {
   newEvent(
     name: $name,
     description: $description,
-    date: $date
+    date: $date,
+    images: $images
 ) {
     message
   }

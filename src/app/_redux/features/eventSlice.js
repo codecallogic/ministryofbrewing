@@ -4,7 +4,8 @@ const initialState = {
   value: {
     name: '',
     description: '',
-    date: ''
+    date: '',
+    images: []
   }
 }
 
