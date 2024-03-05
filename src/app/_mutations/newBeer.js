@@ -3,13 +3,13 @@ import { gql } from '@apollo/client';
 export default gql`
 mutation newBeer(
     $name: String!,
-    $avb: String!,
+    $abv: String!,
     $style: String!,
     $images: [ImageInputType!]!
 ) {
   newBeer(
     name: $name,
-    avb: $avb,
+    abv: $abv,
     style: $style,
     images: $images
 ) {

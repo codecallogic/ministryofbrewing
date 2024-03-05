@@ -4,14 +4,14 @@ export default gql`
 mutation updateBeer(
     $id: ID!,
     $name: String!,
-    $avb: String!,
+    $abv: String!,
     $style: String!,
     $images: [ImageInputType!]!
 ) {
   updateBeer(
     id: $id,
     name: $name,
-    avb: $avb,
+    abv: $abv,
     style: $style,
     images: $images
 ) {

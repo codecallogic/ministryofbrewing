@@ -54,7 +54,7 @@ const NewBeer = ({
       const response = await newBeer({
         variables: {
           name: beer.name,
-          avb: beer.avb,
+          abv: beer.abv,
           style: beer.style,
           images: array
         }
@@ -99,7 +99,7 @@ const NewBeer = ({
         variables: {
           id: beer.id,
           name: beer.name,
-          avb: beer.avb,
+          abv: beer.abv,
           style: beer.style,
           images: array
         }
@@ -238,12 +238,12 @@ const NewBeer = ({
                 id="name"
               />
               <InputField 
-                label="avb"
+                label="abv"
                 item={beer}
-                property={'avb'}
+                property={'abv'}
                 dispatch={dispatch}
                 stateMethod={changeBeerValue}
-                id="avb"
+                id="abv"
               />
               <InputField 
                 label="style"
@@ -296,7 +296,7 @@ const NewBeer = ({
                     src={item.url ? item.url : URL.createObjectURL(item)}
                   />
                   <div 
-                    className="absolute top-3 right-3 w-[30px] h-[30px] rounded-[50%] flex justify-center items-center hover:cursor-pointer"
+                    className="absolute top-3 right-3 w-[30px] h-[30px] rounded-[50%] flex justify-center items-center hover:cursor-pointer bg-schemetwo"
                     onClick={(e) => (e.stopPropagation(), images[idx].url ? deleteImage(item.url) : setImages(removeItemByIndex(idx, images))) }
                   >
                   { loading == `deleteBeerImage-${item.url}` 
@@ -305,9 +305,9 @@ const NewBeer = ({
                     :
                     <SVG 
                       svg={'close'}
-                      width={20}
-                      height={20}
-                      schemeOne={'black'}
+                      width={15}
+                      height={15}
+                      schemeOne={'white'}
                     >
                     </SVG>
                   }

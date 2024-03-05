@@ -5,7 +5,7 @@ query allBeers($id: ID!, $token: String!) {
   allBeers(id: $id, token: $token){
     id,
     name,
-    avb,
+    abv,
     style,
     images {
       url
