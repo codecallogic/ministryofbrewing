@@ -292,11 +292,11 @@ const NewBeer = ({
                 rel="noreferrer"
                 >
                   <img 
-                    className="rounded-2xl bg-cover"
+                    className="rounded-2xl bg-cover w-[100%]"
                     src={item.url ? item.url : URL.createObjectURL(item)}
                   />
                   <div 
-                    className="absolute top-3 right-3 w-[30px] h-[30px] rounded-[50%] flex justify-center items-center hover:cursor-pointer bg-schemetwo"
+                    className="absolute top-2 right-1 w-[35px] h-[35px] rounded-[50%] flex justify-center items-center hover:cursor-pointer bg-schemetwo"
                     onClick={(e) => (e.stopPropagation(), images[idx].url ? deleteImage(item.url) : setImages(removeItemByIndex(idx, images))) }
                   >
                   { loading == `deleteBeerImage-${item.url}` 
