@@ -1,17 +1,48 @@
+export const navLinksLeft = [
+  { 
+    href: "/beers", 
+    label: "Beers",
+    items: []
+  },
+  { 
+    href: "/taproom", 
+    label: "Taproom",
+    items: []
+  }
+];
+
+export const navLinksRight = [
+  { 
+    href: "/events", 
+    label: "Events",
+    items: []
+  },
+  { 
+    href: "/about", 
+    label: "About",
+    items: []
+  }
+];
+
 export const navLinks = [
   { 
-    href: "/armedprofessionals", 
-    label: "Armed Professionals",
+    href: "/beers", 
+    label: "Beers",
     items: []
   },
   { 
-    href: "/contact", 
-    label: "Contact",
+    href: "/taproom", 
+    label: "Taproom",
     items: []
   },
   { 
-    href: "/aboutus", 
-    label: "About Us",
+    href: "/events", 
+    label: "Events",
+    items: []
+  },
+  { 
+    href: "/about", 
+    label: "About",
     items: []
   }
 ];
@@ -19,34 +50,20 @@ export const navLinks = [
 export const footerLinks = [
   { 
       href: "", 
-      label: "About",
+      label: "Info",
       items: [
         {
-          label: 'Our Story',
-          href: '/aboutus'
+          label: 'Jobs',
+          href: '/contact'
         },
         {
-          label: 'Reviews & Testimonials',
-          href: '#'
+          label: 'Directions',
+          href: '/about'
         },
         {
-          label: 'FAQs',
+          label: '1900 E Lombard St. Baltimore, MD 21231',
           href: '#'
         },
-      ]
-  },
-  { 
-      href: "", 
-      label: "Quick Links",
-      items: [
-          {
-            label: 'Armed Citizens',
-            href: '/'
-          },
-          {
-            label: 'Armed Professionals',
-            href: '/armedprofessionals'
-          }
       ]
   }
 ];

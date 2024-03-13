@@ -13,6 +13,7 @@
     "@apollo/experimental-nextjs-app-support": "^0.8.0",
     "@editorjs/header": "^2.8.1",
     "@editorjs/link": "^2.6.2",
+    "@react-hook/window-size": "^3.1.1",
     "@reduxjs/toolkit": "^2.2.1",
     "cookies-next": "^4.1.1",
     "draft-convert": "^2.1.13",
