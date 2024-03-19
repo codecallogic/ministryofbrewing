@@ -80,9 +80,9 @@ function Nav() {
               >
                 <a
                   href={item.href}
-                  className="flex items-center justify-end w-[100%] leading-10 tracking-wide text-[14px] font-[600] font-eina text-white [&>*:nth-child(1)]:ml-2 hover:text-schemetwo transition-all ease-in-out uppercase"
+                  className="flex items-center justify-end w-[100%] leading-10 tracking-wide text-[14px] font-[600] font-eina text-white [&>*:nth-child(1)]:ml-2 hover:text-white transition-all ease-in-out uppercase"
                 >
-                  {pathname == '/armedprofessionals' ? item.label == 'Armed Professionals' ? 'Armed Citizen' : item.label : item.label }
+                  {item.label}
                   {item.items.length > 0 &&
                     <SVG
                       svg={'arrowDown'}
@@ -119,7 +119,7 @@ function Nav() {
                 >
                   <a
                     href={item.href}
-                    className="flex items-center justify-end w-[100%] leading-10 tracking-wide text-[14px] font-[600] font-eina text-white [&>*:nth-child(1)]:ml-2 hover:text-schemetwo transition-all ease-in-out uppercase"
+                    className="flex items-center justify-end w-[100%] leading-10 tracking-wide text-[14px] font-[600] font-eina text-white [&>*:nth-child(1)]:ml-2 hover:text-white transition-all ease-in-out uppercase"
                   >
                     {pathname == '/armedprofessionals' ? item.label == 'Armed Professionals' ? 'Armed Citizen' : item.label : item.label }
                     {item.items.length > 0 &&
@@ -183,7 +183,7 @@ function Nav() {
         </button>
         <section 
           id="mobile-menu"
-          className="fixed top-[0px] left-[20px] z-200 bg-schemeone flex-col justify-center w-[225px] origin-left animate-open-menu hidden shadow-[20px_90px_60px_15px_rgba(0,0,0,0.3)] ml-[-30px]"
+          className="fixed top-[0px] left-[20px] z-200 bg-black flex-col justify-center w-[225px] origin-left animate-open-menu hidden shadow-[20px_90px_60px_15px_rgba(0,0,0,0.3)] ml-[-30px]"
         >
             <div className="w-full flex justify-center py-12 hover:cursor-pointer">
               <img className="w-[80%]" src="/assets/logo.png" alt="Ministry of Defense Logo" />
@@ -193,7 +193,7 @@ function Nav() {
               <a 
                 key={idx}
                 href={item.href}
-                className="flex items-center text-[16px] text-schemetwo w-full text-center py-5 hover:opacity-90 border-b-[1px] border-schemetwo border-opacity-[.7] transition-all duration-800 hover:-translate-y-2 px-6 hover:cursor-pointer">
+                className="flex items-center text-[16px] text-white w-full text-center py-5 hover:opacity-90 border-b-[1px] border-white border-opacity-[.7] transition-all duration-800 hover:-translate-y-2 px-6 hover:cursor-pointer">
                 <SVG
                   svg={item.label.toLowerCase()}
                   alt={item.label}
@@ -205,7 +205,7 @@ function Nav() {
                 <span className="ml-3 max-sm:text-[16px]">{item.label}</span>
               </a>
             )}
-            {loginState &&
+            {/* {loginState &&
               <a 
                 className="flex items-center text-1xl text-schemetwo w-full text-center py-5 hover:opacity-90 border-b-[1px] border-schemetwo border-opacity-[.7] transition-all duration-800 hover:-translate-y-2 px-6 hover:cursor-pointer"
                 onClick={() => (
@@ -244,7 +244,7 @@ function Nav() {
               onClick={() => router.push('/contact')}
               className="flex items-center text-1xl text-schemetwo w-full text-center py-5 hover:opacity-90 border-b-[1px] border-schemetwo border-opacity-[.7] transition-all duration-800 hover:-translate-y-2 px-6 hover:cursor-pointer">
               <span className="ml-3 max-sm:text-[16px]">Contact</span>
-            </a>
+            </a> */}
             </nav>
         </section>
       </nav>

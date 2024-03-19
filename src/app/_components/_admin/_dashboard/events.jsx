@@ -99,9 +99,9 @@ const Events = ({
                 }
               </div>
             </h3>
-            <h3 className="text-[18px] font-poppins font-[500] text-gol">
+            <h3 className="text-[18px] font-poppins font-[500] text-black overflow overflow-y-auto">
               <span>{item.name ? item.name : 'no name'}</span>
-              <div className="flex flex-col items-start py-1">
+              <div className="flex flex-col items-start py-1 overflow overflow-y-auto h-[130px]">
                 <div className="ml-3 font-poppins text-[16px] font-[400] text-[#717579]">date: {item.date ? item.date : 'no date'}</div>
                 <div className="ml-3 font-poppins text-[16px] font-[400] text-[#717579]" dangerouslySetInnerHTML={{ __html: item.description }}></div>
               </div>

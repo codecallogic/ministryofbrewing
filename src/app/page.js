@@ -91,7 +91,7 @@ export default function Home() {
       <section
         className="flex justify-center items-center py-[50px]"
       >
-        <ul className="font-[600] bg-schemefive py-[50px] px-[100px] rounded-xl shadow-2xl">
+        <ul className="font-[600] bg-schemefive py-[50px] px-[100px] rounded-xl shadow-2xl max-sm:px-[50px]">
           <li className="flex text-white"><div className="w-[120px]">Monday</div>  5pm – 9pm</li>
           <li className="flex text-white"><div className="w-[120px]">Tuesday</div> 3pm – 10pm</li>
           <li className="flex text-white"><div className="w-[120px]">Wednesday</div> 3pm – 10pm</li>
@@ -154,6 +154,7 @@ export default function Home() {
           <div>Sign up now to receive info on brewery news, events, and beer releases!</div>
         </div>
       </section>
+  
       <main className="relative">
         <Footer />
       </main>

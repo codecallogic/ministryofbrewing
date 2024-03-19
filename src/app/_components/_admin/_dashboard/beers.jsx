@@ -83,17 +83,17 @@ const Beers = ({
           >
             <h3 className="text-[18px] font-poppins font-[500] text-gol">
               <span>{item.name ? item.name : 'no name'}</span>
-              <div className="w-[230px] h-[150px]">
+              <div className="w-[230px] h-[150px] rounded-lg overflow-y-hidden">
                 {item.images.length > 0 && 
                   <img 
-                    className="w-full h-full bg-cover rounded-lg"
+                    className="w-full h-full object-cover"
                     src={item.images[0].url} 
                     alt="" 
                   />
                 }
                 {!item.images.length && 
                   <img 
-                    className="w-full h-full bg-cover rounded-lg"
+                    className="w-full h-full object-cover"
                     src='https://via.placeholder.com/300' 
                     alt="" 
                   />
@@ -102,7 +102,7 @@ const Beers = ({
             </h3>
             <div className="flex justify-rounded items-start gap-x-[50px] max-xl:flex-col max-xl:gap-y-5 max-xl:items-start">
               <div className="flex flex-col w-[200px]">
-                <h1 className="text-[18px] font-[600] font-poppins">Beer</h1>
+                <h1 className="text-[18px] font-[600] font-poppins">Type</h1>
                 <div className="flex flex-col items-start py-1">
                   <div className="ml-3 font-poppins text-[16px] font-[400] text-[#717579]">abv: {item.abv ? item.abv : 'no abv'}</div>
                   <div className="ml-3 font-poppins text-[16px] font-[400] text-[#717579]">style: {item.style ? item.style : 'no style'}</div>
