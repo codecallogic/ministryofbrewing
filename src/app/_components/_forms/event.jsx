@@ -153,13 +153,21 @@ const NewEvent = ({
   }
 
   useEffect(() => {
-    let html = convertToHTML(editorState.getCurrentContent());
+    const html = convertToHTML({
+      entityToHTML: (entity, originalText) => {
+        if (entity.type === 'LINK') {
+          return <a href={entity.data.url}>{originalText}</a>;
+        }
+        return originalText;
+      }
+    })(editorState.getCurrentContent());
     setConvertedContent(html);
+    
   }, [editorState]);
 
   useEffect(() => {
-    if(event) setImages(event.images)
-  }, [event])  
+    if(event.images) setImages(event.images)
+  }, [event.images])  
 
   useEffect(() => {
     const date = new Date(startDate)
@@ -313,7 +321,7 @@ const NewEvent = ({
                 rel="noreferrer"
                 >
                   <img 
-                    className="rounded-2xl bg-cover bg-cover w-[100%]"
+                    className="rounded-2xl bg-cover w-[100%]"
                     src={item.url ? item.url : URL.createObjectURL(item)}
                   />
                   <div 

@@ -26,6 +26,10 @@ const Events = ({}) => {
   //// REFETCH
   const { refetch: refetchEvents  }           = useQuery(GET_EVENTS, { id: '109JF0SA9DUFJ0J3', token: 'DIFJAOSDIJFOSDIJFI' })
 
+  const encodeHtmlEntities = (str) => {
+    return String(str).replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
   useEffect(() => {
     setWindowWidth(window.innerWidth)
   }, [])
@@ -34,10 +38,10 @@ const Events = ({}) => {
     setWindowWidth(width)
   }, [width])
 
-    //// LISTS
-    useEffect(() => {
-      if(dataEvents.data) setEvents(dataEvents.data.allEvents)
-    }, [dataEvents])
+  //// LISTS
+  useEffect(() => {
+    if(dataEvents.data) setEvents(dataEvents.data.allEvents)
+  }, [dataEvents])
   
   return (
     <>
@@ -51,16 +55,16 @@ const Events = ({}) => {
         <Hero />
       </section>
       <section
-        className="flex justify-center py-5 flex-col items-center px-[200px] gap-y-3 text-center max-md:px-[20px]"
+        className="flex justify-center py-5 flex-col items-center px-[200px] gap-y-3 text-center max-md:px-[20px] my-[20px]"
       >
-        <h1 className="text-[24px] font-[600] text-schemefive uppercase">What's on tap</h1>
-        <div>Our tap list offers a little something for everyone. Our rotating taps feature classic lagers and IPAs as well as more unique, seasonal offerings. We also proudly feature a house cider and our own crafted sodas will be coming back soon. Check back often as our selection rotates frequently!</div>
+        <h1 className="text-[28px] font-[600] text-schemetwo uppercase">Events</h1>
       </section>
       <section
-        className="flex justify-center items-center py-5"
+        className="flex justify-center items-center py-5 my-[50px]"
       >
         <div className="grid grid-cols-3 gap-x-5 max-xl:grid-cols-2 max-md:grid-cols-1">
           {events && events.map((item, idx) => 
+            // console.log(item)
             <div 
               className="flex gap-x-5 w-[400px] h-[200px] max-sm:w-[300px]"
               key={idx}
@@ -75,9 +79,7 @@ const Events = ({}) => {
               <div className="flex flex-col w-[225px]">
                 <div className="text-[22px] font-[600] capitalize">{item.name}</div>
                 <div className="text-[16px] font-[600] text-grey capitalize">{item.date}</div>
-                <div className="text-[14px] font-[400] capitalize" dangerouslySetInnerHTML={{ __html: item.description.substring(0, 200) }}></div>
-                {/* <div><span className="font-[600]">ABV: </span>{item.abv}</div>
-                <div><span className="font-[600]">Style: </span>{item.style}</div> */}
+                <div className="text-[14px] font-[400] capitalize" dangerouslySetInnerHTML={{ __html: item.description }}></div>
               </div>
             </div>
           )}
