@@ -66,7 +66,7 @@ const Events = ({}) => {
           {events && events.map((item, idx) => 
             // console.log(item)
             <div 
-              className="flex gap-x-5 w-[400px] h-[200px] max-sm:w-[300px]"
+              className="flex gap-x-5 w-[400px] h-[200px] max-sm:w-[300px] max-xl:h-[300px]"
               key={idx}
             >
               <div className="w-[125px] h-[125px] rounded-full shadow-xl max-sm:w-[75px] max-sm:h-[75px] overflow-hidden">
