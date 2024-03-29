@@ -185,7 +185,10 @@ function Nav() {
           id="mobile-menu"
           className="fixed top-[0px] left-[20px] z-200 bg-black flex-col justify-center w-[225px] origin-left animate-open-menu hidden shadow-[20px_90px_60px_15px_rgba(0,0,0,0.3)] ml-[-30px]"
         >
-            <div className="w-full flex justify-center py-12 hover:cursor-pointer">
+            <div 
+              className="w-full flex justify-center py-12 hover:cursor-pointer"
+              onClick={() => window.location.href = '/'}
+            >
               <img className="w-[80%]" src="/assets/logo.png" alt="Ministry of Defense Logo" />
             </div>
             <nav className="flex flex-col min-h-screen items-center py-12 px-2" aria-label="mobile">

@@ -163,7 +163,7 @@ export default function Home() {
             />
           </div>
           <div className="font-[600] uppercase py-3">Sign Up</div>
-          <div>Sign up now to receive info on brewery news, events, and beer releases!</div>
+          <div><span className="text-schemefive hover:cursor-pointer" onClick={() => window.location.href = 'https://mailchi.mp/25af3b8a5397/ministryofbrewingcongregation'}>Sign up now</span> to receive info on brewery news, events, and beer releases!</div>
         </div>
       </section>
   
