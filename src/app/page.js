@@ -35,7 +35,10 @@ export default function Home() {
       <section
         className="w-full flex justify-evenly items-start px-[200px] pt-[100px] pb-[50px] gap-x-3 max-md:flex-col max-md:px-[50px] max-md:gap-y-5"
       >
-        <div className="w-1/4 flex justify-center flex-col text-center max-md:w-full">
+        <div 
+          className="w-1/4 flex justify-center flex-col text-center max-md:w-full hover:cursor-pointer"
+          onClick={() => window.location.href = '/food-trucks'}
+        >
           <div className="flex justify-center h-[80px]">
             <SVG
               svg={'foodTruck'}
@@ -48,7 +51,10 @@ export default function Home() {
           <div className="font-[600] uppercase py-3">Food Trucks</div>
           <div>View the upcoming calendar to see what great, local food vendors will be dishing on site.</div>
         </div>
-        <div className="w-1/4 flex justify-center flex-col text-center max-md:w-full">
+        <div 
+          className="w-1/4 flex justify-center flex-col text-center max-md:w-full hover:cursor-pointer"
+          onClick={() => window.location.href = '/draft-list'}
+        >
           <div className="flex justify-center h-[80px]">
             <SVG
               svg={'beer'}
@@ -59,9 +65,12 @@ export default function Home() {
             />
           </div>
           <div className="font-[600] uppercase py-3">Draft List</div>
-          <div>Find the latest taproom offerings – including new seasonals and one-offs. And click here for our current non-beer offerings.</div>
+          <div>Find the latest taproom offerings – including new seasonals and one-offs. And <span className="text-blue-500" onClick={(e) => (e.stopPropagation(), window.location.href = '/non-beer-list/')}>click here</span> for our current non-beer offerings.</div>
         </div>
-        <div className="w-1/4 flex justify-center flex-col text-center max-md:w-full">
+        <div 
+          className="w-1/4 flex justify-center flex-col text-center max-md:w-full hover:cursor-pointer"
+          onClick={() => window.location.href = 'https://www.toasttab.com/ministry-of-brewing/giftcards?utmCampaign=onlineOrdering'}
+        >
           <div className="flex justify-center h-[80px]">
             <SVG
               svg={'giftCard'}
@@ -74,7 +83,10 @@ export default function Home() {
           <div className="font-[600] uppercase py-3">Gift Cards</div>
           <div>A Ministry Digital Gift Card makes the best gift for any reason to celebrate.</div>
         </div>
-        <div className="w-1/4 flex justify-center flex-col text-center max-md:w-full">
+        <div 
+          className="w-1/4 flex justify-center flex-col text-center max-md:w-full hover:cursor-pointer"
+          onClick={() => window.location.href = '/faq'}
+        >
           <div className="flex justify-center">
             <SVG
               svg={'faq'}
