@@ -8,6 +8,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "Ministry of Brewing",
   description: "Ministry of Brewing",
+  icons: {
+    icon: '/assets/tabicon.png', // /public path
+  }
 };
 
 export default function RootLayout({ children }) {

@@ -33,6 +33,11 @@ const Beers = ({}) => {
       <main className="relative">
         <Nav />
       </main>
+      <section 
+        className="xl:padding-l wide:padding-r padding-b shadow-lg bg-cover bg-center	bg-no-repeat h-[400px] shadows-2xl"
+        style={{ backgroundImage: windowWidth < 765 ? "url('/assets/aboutpage.jpeg')" : "url('/assets/aboutpage.jpeg')" }}
+      >
+      </section>
       <section
         className="flex justify-center py-5 flex-col items-center px-[200px] gap-y-3 text-center max-sm:px-[20px]"
       >
