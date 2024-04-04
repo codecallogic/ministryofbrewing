@@ -82,16 +82,16 @@ export const founders = [
     description: "Mike brings with him the leadership experience and operational expertise that help keeps the Ministry running smoothly. A seasoned veteran of the food industry as a former Panera Bread exec and, more recently, co-founder of Karrikin Spirits, we regard him as a mentor and confidant. Share a few beers with him and he could be yours too!"
   },
   { 
-    image: "/assets/founderfour.jpeg",
-    name: "Dave Macala",
-    title: "Head Brewer",
-    description: "Our head brewer, Dave Macala, is a man of many talents: brewer, carpenter, purveyor of bad one-liners. He built much that you may enjoy at our brewery from reclaimed tables to exceptional beers. Dave can help provide beverage advice and movie trivia answers, wake word is “Dave”."
-  },
-  { 
     image: "/assets/founderfive.jpeg",
     name: "David Wendell",
     title: "Co-Founder and Brewer",
     description: "David is a former member of the Upper Fells community, a brewer and scientist. He runs an Environmental Engineering research lab that specializes in water quality and synthetic biology and holds several patents related to his research discoveries. Ask him about our beers, brewery science or the education program he and Ernst are developing from our lab."
+  },
+  { 
+    image: "/assets/founderfour.jpeg",
+    name: "Dave Macala",
+    title: "Head Brewer",
+    description: "Our head brewer, Dave Macala, is a man of many talents: brewer, carpenter, purveyor of bad one-liners. He built much that you may enjoy at our brewery from reclaimed tables to exceptional beers. Dave can help provide beverage advice and movie trivia answers, wake word is “Dave”."
   },
   { 
     image: "/assets/foundersix.jpeg",

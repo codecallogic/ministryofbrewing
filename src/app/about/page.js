@@ -41,7 +41,7 @@ const Beers = ({}) => {
       <section
         className="flex justify-center py-5 flex-col items-center px-[200px] gap-y-3 text-center max-sm:px-[20px]"
       >
-        <h1 className="text-[24px] font-[600] text-schemefive uppercase mt-[150px]">Our Mission</h1>
+        <h1 className="text-[32px] font-[600] text-black uppercase mt-[40px]">Our Mission</h1>
         <div>We are humbled to base our operations in the former St. Michael’s Church and proud to be revitalizing a historic community gathering place. Our team brings together experienced industry professionals resulting in beer, food, and ambiance that will elevate your senses.</div>
         <div>Another part of our mission is to give back to the people around us.  To make this happen we are focused on three core values:</div>
         <div className="font-[600]">Education, Community, and Philanthropy</div>
@@ -153,10 +153,6 @@ const Beers = ({}) => {
           <h1 className="text-schemefive text-[22px] font-[600] uppercase">Location</h1>
           <h1 className="text-schemetwo text-[16px] font-[600] uppercase">Address</h1>
           <p>1900 E Lombard St @ S Wolfe St, Baltimore, MD 21231</p>
-          <h1 className="text-schemetwo text-[16px] font-[600] uppercase">Ride Share Address</h1>
-          <p>7 S Wolfe St.</p>
-          <h1 className="text-schemetwo text-[16px] font-[600] uppercase">Hours</h1>
-          <p>Posted weekly. Check our Taproom page for current hours.</p>
           <h1 className="text-schemetwo text-[16px] font-[600] uppercase">Contact</h1>
           <p>contact@ministryofbrewing.com</p>
           <p>(410) 624-5623</p>

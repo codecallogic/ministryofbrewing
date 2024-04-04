@@ -7,6 +7,7 @@ import { useWindowSize } from '@react-hook/window-size'
 //// COMPONENTS
 import Nav from '@/app/_components/nav'
 import Footer from '@/app/_components/footer'
+import Hero from '@/app/_components/hero'
 
 export default function Home() {
 
@@ -30,7 +31,7 @@ export default function Home() {
         className="xl:padding-l wide:padding-r padding-b shadow-lg bg-cover bg-center	bg-no-repeat h-[800px] shadows-2xl"
         style={{ backgroundImage: windowWidth < 765 ? "url('/assets/homeHeaderThree.jpeg')" : "url('/assets/homeHeaderThree.jpeg')" }}
       >
-        {/* <Hero /> */}
+        <Hero />
       </section>
       <section
         className="w-full flex justify-evenly items-start px-[200px] pt-[100px] pb-[50px] gap-x-3 max-md:flex-col max-md:px-[50px] max-md:gap-y-5"
@@ -53,7 +54,7 @@ export default function Home() {
         </div>
         <div 
           className="w-1/4 flex justify-center flex-col text-center max-md:w-full hover:cursor-pointer"
-          onClick={() => window.location.href = '/draft-list'}
+          onClick={() => window.location.href = '/taproom'}
         >
           <div className="flex justify-center h-[80px]">
             <SVG
@@ -99,19 +100,6 @@ export default function Home() {
           <div className="font-[600] uppercase py-3">FAQ</div>
           <div>Have a question about the brewery? Check here to learn more about our history, visiting, and finding our products.</div>
         </div>
-      </section>
-      <section
-        className="flex justify-center items-center py-[50px]"
-      >
-        <ul className="font-[600] bg-schemefive py-[50px] px-[100px] rounded-xl shadow-2xl max-sm:px-[50px]">
-          <li className="flex text-white"><div className="w-[120px]">Monday</div>  5pm – 9pm</li>
-          <li className="flex text-white"><div className="w-[120px]">Tuesday</div> 3pm – 10pm</li>
-          <li className="flex text-white"><div className="w-[120px]">Wednesday</div> 3pm – 10pm</li>
-          <li className="flex text-white"><div className="w-[120px]">Thursday</div>3pm – 10pm</li>
-          <li className="flex text-white"><div className="w-[120px]">Friday</div>12pm – 10pm</li>
-          <li className="flex text-white"><div className="w-[120px]">Saturday</div>12pm – 10pm</li>
-          <li className="flex text-white"><div className="w-[120px]">Sunday</div>12pm – 8pm</li>
-        </ul>
       </section>
       <section
         className="w-full flex justify-evenly items-start px-[200px] pt-[100px] pb-[50px] gap-x-3 max-md:flex-col max-md:px-[50px] max-md:gap-y-5"

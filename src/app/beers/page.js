@@ -44,11 +44,17 @@ const Beers = ({}) => {
       <main className="relative">
         <Nav />
       </main>
-      <section 
+      {/* <section 
         className="xl:padding-l wide:padding-r padding-b shadow-lg bg-cover bg-center	bg-no-repeat h-[800px] shadows-2xl"
         style={{ backgroundImage: windowWidth < 765 ? "url('/assets/homeHeaderTwo.jpeg')" : "url('/assets/homeHeaderTwo.jpeg')" }}
       >
-        {/* <Hero /> */}
+        <Hero />
+      </section> */}
+      <section 
+        className="xl:padding-l wide:padding-r padding-b shadow-lg bg-cover bg-center	bg-no-repeat h-[400px] shadows-2xl"
+        style={{ backgroundImage: windowWidth < 765 ? "url('/assets/homeHeaderThree.jpeg')" : "url('/assets/homeHeaderThree.jpeg')" }}
+      >
+
       </section>
       <section
         className="flex justify-center py-[50px] flex-col items-center px-[200px] max-lg:px-[50px] gap-y-3 text-center"

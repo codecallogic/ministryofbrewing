@@ -45,15 +45,21 @@ const Taproom = ({}) => {
         <Nav />
       </main>
       <section 
+        className="xl:padding-l wide:padding-r padding-b shadow-lg bg-cover bg-center	bg-no-repeat h-[400px] shadows-2xl"
+        style={{ backgroundImage: windowWidth < 765 ? "url('/assets/headerdraftlist.jpeg')" : "url('/assets/headerdraftlist.jpeg')" }}
+      >
+
+      </section>
+      {/* <section 
         className="xl:padding-l wide:padding-r padding-b shadow-lg bg-cover bg-center	bg-no-repeat h-[800px] shadows-2xl"
         style={{ backgroundImage: windowWidth < 765 ? "url('/assets/homeHeaderTwo.jpeg')" : "url('/assets/homeHeaderTwo.jpeg')" }}
       >
         <Hero />
-      </section>
+      </section> */}
       <section
         className="flex justify-center py-5 flex-col items-center px-[200px] gap-y-3 text-center max-md:px-[20px]"
       >
-        <h1 className="text-[24px] font-[600] text-schemefive uppercase">What's on tap</h1>
+        <h1 className="text-[24px] font-[600] text-schemefive uppercase">Current Draft List</h1>
         <div>Our tap list offers a little something for everyone. Our rotating taps feature classic lagers and IPAs as well as more unique, seasonal offerings. We also proudly feature a house cider and our own crafted sodas will be coming back soon. Check back often as our selection rotates frequently!</div>
       </section>
       <section
