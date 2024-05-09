@@ -7,9 +7,9 @@ const FoodTrucks = ({
   changeView,
   changePopup,
   changeEdit,
-  events,
-  editEvent,
-  deleteEvent,
+  foodTrucks,
+  editFoodTruck,
+  deleteFoodTruck,
   refetch
 }) => {
   
@@ -17,27 +17,27 @@ const FoodTrucks = ({
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState('')
 
-  const submitDeleteEvent = async (id) => {
+  // const submitDeleteFoodTruck = async (id) => {
 
-    setLoading('deleteEvent')
+  //   setLoading('deleteFoodTruck')
     
-    try {
-      const response = await deleteEvent({
-        variables: {
-          id: id
-        }
-      })
+  //   try {
+  //     const response = await deleteFoodTruck({
+  //       variables: {
+  //         id: id
+  //       }
+  //     })
 
-      setLoading('')
-      setMessage(response.data.deleteEvent.message)
-      refetch()
+  //     setLoading('')
+  //     setMessage(response.data.deleteFoodTruck.message)
+  //     refetch()
       
-    } catch (error) {
-      console.log(error)
-      window.scrollTo(0, 0);
-      if(error) setMessage(error.message)
-    }
-  }
+  //   } catch (error) {
+  //     console.log(error)
+  //     window.scrollTo(0, 0);
+  //     if(error) setMessage(error.message)
+  //   }
+  // }
   
   return (
     <>
@@ -73,10 +73,10 @@ const FoodTrucks = ({
     </div>
     <div className="px-[50px] pt-[20px] bg-white min-h-screen">
       <div className="flex items-center bg-schemetwo p-5 rounded-xl">
-        <h1 className="text-[18px] font-poppins font-[600] text-white">All Events</h1>
+        <h1 className="text-[18px] font-poppins font-[600] text-white">All Food Trucks</h1>
       </div>
       <div className="mt-[40px] flex flex-col gap-y-4">
-        { events && events.map((item, idx) => 
+        { foodTrucks && foodTrucks.map((item, idx) => 
           <div 
             key={idx}
             className="w-full rounded-[20px] px-3 py-3 h-[200px] shadow-lg flex items-start gap-x-5 gap-y-2 max-xl:h-[100%] max-xl:items-start max-xl:justify-center max-xl:w-[100%] relative"
@@ -101,10 +101,6 @@ const FoodTrucks = ({
             </h3>
             <h3 className="text-[18px] font-poppins font-[500] text-black overflow overflow-y-auto">
               <span>{item.name ? item.name : 'no name'}</span>
-              <div className="flex flex-col items-start py-1 overflow overflow-y-auto h-[130px]">
-                <div className="ml-3 font-poppins text-[16px] font-[400] text-[#717579]">date: {item.date ? item.date : 'no date'}</div>
-                <div className="ml-3 font-poppins text-[16px] font-[400] text-[#717579]" dangerouslySetInnerHTML={{ __html: item.description }}></div>
-              </div>
             </h3>
             <div className="flex justify-rounded items-start gap-x-[50px] max-xl:flex-col max-xl:gap-y-5 max-xl:items-start">
               <div className="absolute top-3 right-5 hover:cursor-pointer">
@@ -123,16 +119,16 @@ const FoodTrucks = ({
                     <div className="absolute w-[200px] rounded-xl bg-slate-200">
                       <div 
                         className="p-2 hover:bg-gold rounded-xl hover:text-white"
-                        onClick={(e) => (dispatch(changePopup('newEvent')), dispatch(changeEdit('event')), dispatch(editEvent({ id: item.id, items: events}), setDropdown('')))}
+                        onClick={(e) => (dispatch(changePopup('newFoodTruck')), dispatch(changeEdit('foodTruck')), dispatch(editFoodTruck({ id: item.id, items: foodTrucks}), setDropdown('')))}
                       >
-                        Edit Event
+                        Edit Food Truck
                       </div>
-                      <div 
+                      {/* <div 
                         className="p-2 hover:bg-gold rounded-xl hover:text-white"
-                        onClick={(e) => (submitDeleteEvent(item.id), setDropdown(''))}
+                        onClick={(e) => (submitDeleteFoodTruck(item.id), setDropdown(''))}
                       >
                         Delete
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 }

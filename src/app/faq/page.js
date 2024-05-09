@@ -29,7 +29,7 @@ const BeerList = ({}) => {
         <Nav />
       </main>
       <section
-        className="flex justify-center py-5 flex-col px-[50px] gap-y-3 max-md:px-[20px] bg-white"
+        className="flex justify-center py-[100px] flex-col px-[300px] gap-y-3 max-md:px-[20px] bg-white"
       >
         <h1 className="text-[18px] text-black font-[600] mt-[150px]">What food trucks are available at the brewery?</h1>
         <p>We’re proud to feature some of the best and most exciting food trucks in the local area on site. You will commonly see updates on our instagram (@ministryofbrewing) and you can find the full calendar by clicking on the link on our homepage.</p>

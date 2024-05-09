@@ -14,6 +14,8 @@ import NewBeer from "../_components/_forms/beer";
 import Beers from '../_components/_admin/_dashboard/beers'
 import NewEvent from '../_components/_forms/event'
 import Events from '../_components/_admin/_dashboard/events'
+import NewFoodTruck from '../_components/_forms/foodTruck'
+import FoodTrucks from '../_components/_admin/_dashboard/foodTrucks'
 
 //// REDUCERS
 import { useDispatch, useSelector } from "react-redux";
@@ -21,11 +23,13 @@ import { login, logout } from "@/app/_redux/features/authSlice";
 import { changeView, changePopup, changeEdit } from "@/app/_redux/features/navigationSlice";
 import { changeBeerValue, editBeer, changeBeerImages, resetBeer } from "../_redux/features/beerSlice";
 import { changeEventValue, editEvent, changeEventImages, resetEvent } from "../_redux/features/eventSlice";
+import { changeFoodTruckValue, editFoodTruck, changeFoodTruckImages, resetFoodTruck } from "../_redux/features/foodTruckSlice"
 
 ///// QUERIES
 import GET_USER from '@/app/_queries/fetchUser'
 import GET_BEERS from '@/app/_queries/fetchBeers'
 import GET_EVENTS from '@/app/_queries/fetchEvents'
+import GET_FOOD_TRUCKS from '@/app/_queries/fetchFoodTrucks'
 
 ///// MUTATIONS
 import NEW_BEER from '@/app/_mutations/newBeer'
@@ -36,6 +40,10 @@ import NEW_EVENT from '@/app/_mutations/newEvent'
 import UPDATE_EVENT from '@/app/_mutations/updateEvent'
 import DELETE_EVENT from '@/app/_mutations/deleteEvent'
 import DELETE_EVENT_IMAGE from '@/app/_mutations/deleteEventImage'
+import NEW_FOOD_TRUCK from '@/app/_mutations/newFoodTruck'
+import UPDATE_FOOD_TRUCK from '@/app/_mutations/updateFoodTruck'
+import DELETE_FOOD_TRUCK from '@/app/_mutations/deleteFoodTruck'
+import DELETE_FOOD_TRUCK_IMAGE from '@/app/_mutations/deleteFoodTruckImage'
 
 const Admin = ({}) => {
 
@@ -50,19 +58,24 @@ const Admin = ({}) => {
   const [beers, setBeers]                     = useState([])
   const [event, setEvent]                     = useState('')
   const [events, setEvents]                   = useState([])
+  const [foodTruck, setFoodTruck]             = useState('')
+  const [foodTrucks, setFoodTrucks]           = useState([])
   const currentNavigation                     = useSelector((state) => state.navigationReducer);
   const currentBeer                           = useSelector((state) => state.beerReducer);
   const currentEvent                          = useSelector((state) => state.eventReducer);
+  const currentFoodTruck                      = useSelector((state) => state.foodTruckReducer)
   const [cookies, setCookie, removeCookie]    = useCookies(['adminToken', 'adminUser', 'view']);
 
   //// DATA
   const dataUser                              = useQuery(GET_USER, { variables: { id: cookies.adminUser ? cookies.adminUser.id : 'unknown', token: cookies.adminToken ? cookies.adminToken : 'unknown'}})
   const dataBeers                             = useQuery(GET_BEERS, { variables: { id: '109JF0SA9DUFJ0J3', token: 'DIFJAOSDIJFOSDIJFI'}})
   const dataEvents                            = useQuery(GET_EVENTS, { variables: { id: '109JF0SA9DUFJ0J3', token: 'DIFJAOSDIJFOSDIJFI'}})
+  const dataFoodTrucks                        = useQuery(GET_FOOD_TRUCKS, { variables: { id: '109JF0SA9DUFJ0J3', token: 'DIFJAOSDIJFOSDIJFI'}})
 
   //// REFETCH
   const { refetch: refetchBeers  }            = useQuery(GET_BEERS, { variables: { id: cookies.adminUser ? cookies.adminUser.id : 'unknown', token: cookies.adminToken ? cookies.adminToken : 'unknown' } })
   const { refetch: refetchEvents  }           = useQuery(GET_EVENTS, { variables: { id: cookies.adminUser ? cookies.adminUser.id : 'unknown', token: cookies.adminToken ? cookies.adminToken : 'unknown' } })
+  const { refetch: refetchFoodTrucks  }       = useQuery(GET_FOOD_TRUCKS, { variables: { id: cookies.adminUser ? cookies.adminUser.id : 'unknown', token: cookies.adminToken ? cookies.adminToken : 'unknown' } })
 
   //// MUTATIONS
   const [newBeer, { dataNewBeer, loadingNewBeer, errorNewBeer }] = useMutation(NEW_BEER, { refetchQueries: [ GET_BEERS ]})
@@ -75,10 +88,14 @@ const Admin = ({}) => {
   const [deleteEventImage, { dataDeleteEventImage, loadingDeleteEventImage, errorDeleteEventImage}] = useMutation(DELETE_EVENT_IMAGE, { refetchQueries: [ GET_EVENTS ]})
   const [deleteEvent, { dataDeleteEvent, loadingDeleteEvent, errorDeleteEvent}] = useMutation(DELETE_EVENT, { refetchQueries: [ GET_EVENTS ]})
 
+  const [newFoodTruck, { dataNewFoodTruck, loadingNewFoodTruck, errorNewFoodTruck }] = useMutation(NEW_FOOD_TRUCK, { refetchQueries: [ GET_FOOD_TRUCKS ]})
+  const [updateFoodTruck, { dataUpdateFoodTruck, loadingUpdateFoodTruck, errorUpdateFoodTruck}] = useMutation(UPDATE_FOOD_TRUCK, { refetchQueries: [ GET_FOOD_TRUCKS ]})
+  const [deleteFoodTruck, { dataDeleteFoodTruck, loadingDeleteFoodTruck, errorDeleteFoodTruck }] = useMutation(DELETE_FOOD_TRUCK , { refetchQueries: [ GET_FOOD_TRUCKS ]})
+  const [deleteFoodTruckImage, { dataDeleteFoodTruckImage, loadingDeleteFoodTruckImage, errorDeleteFoodTruckImage }] = useMutation(DELETE_FOOD_TRUCK_IMAGE, { refetchQueries: [ GET_FOOD_TRUCKS ]})
+
   useEffect(() => {
 
     setLoadingData(true)
-    // console.log(dataUser)
     if(dataUser.error){ 
       console.log('ERROR')
       dataUser.error.message = 'Invalid token' ? router.push('/admin/login') : router.push('/error') 
@@ -108,6 +125,10 @@ const Admin = ({}) => {
     setEvent(currentEvent.value)
   }, [currentEvent])
 
+  useEffect(() => {
+    setFoodTruck(currentFoodTruck.value)
+  }, [currentFoodTruck])
+
   //// LISTS
 
   useEffect(() => {
@@ -117,10 +138,13 @@ const Admin = ({}) => {
   useEffect(() => {
     if(dataEvents.data) setEvents(dataEvents.data.allEvents)
   }, [dataEvents])
+
+  useEffect(() => {
+    if(dataFoodTrucks.data) setFoodTrucks(dataFoodTrucks.data.allFoodTrucks)
+  }, [dataFoodTrucks])
   
   if(!user) return <div className="ring">Loading</div>
 
-  
   return (
     <>
       <main className="relative ">
@@ -149,8 +173,10 @@ const Admin = ({}) => {
             changeEdit={changeEdit}
             resetBeer={resetBeer}
             resetEvent={resetEvent}
+            resetFoodTruck={resetFoodTruck}
             beers={beers}
             events={events}
+            foodTrucks={foodTrucks}
           />
         }
         { view == 'beers' &&
@@ -175,6 +201,18 @@ const Admin = ({}) => {
             editEvent={editEvent}
             deleteEvent={deleteEvent}
             refetch={refetchEvents}
+          />
+        }
+        { view == 'foodTrucks' &&
+          <FoodTrucks
+            dispatch={dispatch}
+            changeView={changeView}
+            changePopup={changePopup}
+            changeEdit={changeEdit}
+            foodTrucks={foodTrucks}
+            editFoodTruck={editFoodTruck}
+            deleteFoodTruck={deleteFoodTruck}
+            refetch={refetchFoodTrucks}
           />
         }
         { popup == 'newBeer' &&
@@ -213,6 +251,25 @@ const Admin = ({}) => {
           >
           </NewEvent>
         }
+        { popup == 'newFoodTruck' &&
+          <NewFoodTruck
+            dispatch={dispatch}
+            changePopup={changePopup}
+            changeEdit={changeEdit}
+            changeFoodTruckValue={changeFoodTruckValue}
+            changeFoodTruckImages={changeFoodTruckImages}
+            foodTruck={foodTruck}
+            newFoodTruck={newFoodTruck}
+            resetFoodTruck={resetFoodTruck}
+            changeView={changeView}
+            edit={edit}
+            updateFoodTruck={updateFoodTruck}
+            refetch={refetchFoodTrucks}
+            deleteFoodTruckImage={deleteFoodTruckImage}
+          >
+          </NewFoodTruck>
+        }
+        
       </div>
     </>
   )

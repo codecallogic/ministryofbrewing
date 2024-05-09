@@ -35,8 +35,8 @@ const Footer = ({}) => {
       <div className="w-full pl-[102px] pr-[120px] pb-[44px] max-md:pl-[35px] max-md:pr-[35px]">
         <div className="border-t-[1px] border-white pt-[14px] flex justify-between max-md:flex-col max-md:items-center">
           <div className="text-white font-eina text-[14px] font-[400] leading-[20px] flex">
-            <span className="border-r-[2px] border-white pr-[30px] hover:cursor-pointer" onClick={() => router.push('/termsandservices')}>Terms & Services</span>
-            <span className="pl-[30px] hover:cursor-pointer" onClick={() => router.push('/privacypolicy')}>Privacy Policy</span>
+            {/* <span className="border-r-[2px] border-white pr-[30px] hover:cursor-pointer" onClick={() => router.push('/termsandservices')}>Terms & Services</span>
+            <span className="pl-[30px] hover:cursor-pointer" onClick={() => router.push('/privacypolicy')}>Privacy Policy</span> */}
           </div>
           <div className="text-white font-eina text-[15px] font-[400] leading-[20px] max-md:mt-[48px] max-md:text-center">2024, All Rights Reserved.</div>  
         </div>            

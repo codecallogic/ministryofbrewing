@@ -61,6 +61,10 @@ export const footerLinks = [
           href: '/about'
         },
         {
+          label: 'FAQs',
+          href: '/faq'
+        },
+        {
           label: '1900 E Lombard St. Baltimore, MD 21231',
           href: '#'
         },

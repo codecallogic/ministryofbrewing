@@ -87,9 +87,9 @@ const Beers = ({}) => {
                 </img>
               </div>
               <div className="flex flex-col w-[225px]">
-                <div className="text-[22px] font-[600] capitalize">{item.name}</div>
-                <div className="text-[16px] font-[400] capitalize text-grey">{item.title}</div>
-                <div className="text-[14px] font-[400] capitalize">{item.description.substring(0, 500)}</div>
+                <div className="text-[22px] font-[600]">{item.name}</div>
+                <div className="text-[16px] font-[400] text-grey">{item.title}</div>
+                <div className="text-[14px] font-[400]">{item.description.substring(0, 500)}</div>
               </div>
             </div>
           )}

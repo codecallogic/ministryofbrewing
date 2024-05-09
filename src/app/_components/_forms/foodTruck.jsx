@@ -21,16 +21,16 @@ import { checkObjectValues, removeItemByIndex } from '@/app/_helpers/main'
 const FoodTruck = ({
   dispatch,
   changePopup,
-  changeEventValue,
-  changeEventImages,
-  event,
-  newEvent,
-  resetEvent,
+  changeFoodTruckValue,
+  changeFoodTruckImages,
+  foodTruck,
+  newFoodTruck,
+  resetFoodTruck,
   changeView,
   edit,
-  updateEvent,
+  updateFoodTruck,
   refetch,
-  deleteEventImage
+  deleteFoodTruckImage
 }) => {
 
   const [message, setMessage]                         = useState('')
@@ -38,15 +38,19 @@ const FoodTruck = ({
   const [images, setImages]                           = useState([])
   const [convertedContent, setConvertedContent]       = useState(null);
   const [editorState, setEditorState]                 = useState(EditorState.createEmpty())
-  const [startDate, setStartDate]                     = useState(event.date ? event.date : new Date());
+  const [startDate, setStartDate]                     = useState(foodTruck.date ? foodTruck.date : new Date());
   const { FileInput, openFileDialog, uploadToS3 }     = useS3Upload();
 
+  useEffect(() => {
+    console.log('FOOD', foodTruck)
+  }, [foodTruck])
+  
   const submitFoodTruck = async () => {
     
     try {
 
       let array = []
-      setLoading('createEvent')
+      setLoading('createFoodTruck')
       
       if(images){
         const updatedPromises = await Promise.all(images.map(async (item, idx) => {
@@ -59,18 +63,16 @@ const FoodTruck = ({
         }))        
       }
       
-      const response = await newEvent({
+      const response = await newFoodTruck({
         variables: {
-          name: event.name,
-          description: convertedContent,
-          date: event.date,
+          name: foodTruck.name,
           images: array
         }
       })
 
       setLoading('')
-      dispatch(resetEvent())
-      setMessage(response.data.newEvent.message)
+      dispatch(resetFoodTruck())
+      setMessage(response.data.newFoodTruck.message)
       setImages([])
       
     } catch (error) {
@@ -81,12 +83,12 @@ const FoodTruck = ({
     
   }
 
-  const submitUpdateEvent = async () => {
-    
+  const submitUpdateFoodTruck = async () => {
+
     try {
 
       let array = []
-      setLoading('updateEvent')
+      setLoading('updateFoodTruck')
       
       if(images){
 
@@ -103,19 +105,31 @@ const FoodTruck = ({
 
       setImages(array)
 
-      const response = await updateEvent({
+      const response = await updateFoodTruck({
         variables: {
-          id: event.id,
-          name: event.name,
-          description: convertedContent !== '<p></p>' ? convertedContent : event.description,
-          date: event.date,
-          images: array
+          id: foodTruck.id,
+          name: foodTruck.name,
+          images: array,
+          oldImages: foodTruck.images
         }
       })
 
+      let itemToDelete
+
+      if(foodTruck.images.length > 0){
+        foodTruck.images.forEach((item, idx) => {
+
+          itemToDelete = item.url
+          
+        })
+      }
+
+      let newImages = array.filter((item) => item.url !== itemToDelete )
+      
+      setImages(newImages)
       refetch()
       setLoading('')
-      setMessage(response.data.updateEvent.message)
+      setMessage(response.data.updateFoodTruck.message)
       
     } catch (error) {
       console.log(error)
@@ -126,13 +140,13 @@ const FoodTruck = ({
 
   const deleteImage = async (url) => {
 
-    setLoading(`deleteEventImage-${url}`)
+    setLoading(`deleteFoodTruckImage-${url}`)
 
     try {
 
-      const response = await deleteEventImage({
+      const response = await deleteFoodTruckImage({
         variables: {
-          id: event.id,
+          id: foodTruck.id,
           images: images,
           url: url
         }
@@ -143,7 +157,7 @@ const FoodTruck = ({
       refetch()
       setLoading('')
       setImages(newArray)
-      setMessage(response.data.deleteEventImage.message)
+      setMessage(response.data.deleteFoodTruckImage.message)
       
     } catch (error) {
       console.log(error)
@@ -166,14 +180,12 @@ const FoodTruck = ({
   }, [editorState]);
 
   useEffect(() => {
-    if(event.images) setImages(event.images)
-  }, [event.images])  
+    if(foodTruck.images) setImages(foodTruck.images)
+  }, [foodTruck.images]) 
 
   useEffect(() => {
-    const date = new Date(startDate)
-    const regularDateFormat = date.toLocaleDateString()
-    dispatch(changeEventValue({ value: regularDateFormat, type: 'date' }))
-  }, [startDate])
+    if(images.length == 2) submitUpdateFoodTruck()
+  }, [images])
   
   return (
     <div id="default-modal" tabIndex="-1" aria-hidden="true" className="overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex bg-[rgba(0, 0, 0, 0.5)] justify-center items-center w-full md:inset-0 h-[calc(100%)] max-h-full bg-black/50">
@@ -181,9 +193,9 @@ const FoodTruck = ({
           <div className="relative bg-white rounded-xl shadow-xl dark:bg-gray-700">
             <div className="flex items-center justify-between pt-5 pb-3 px-5 rounded-lg dark:border-gray-600 h-[50px]">
                 <h3 className="flex flex-col">
-                  <span className="font-poppins text-[24px] font-[900] text-gray-900 dark:text-white">{edit ? 'Update Event' : 'Create Event'}</span>
+                  <span className="font-poppins text-[24px] font-[900] text-gray-900 dark:text-white">{edit ? 'Update Food Truck' : 'Create Food Truck'}</span>
                 </h3>
-                {event && checkObjectValues(event, images) && !edit &&
+                {foodTruck && checkObjectValues(foodTruck, images) && !edit &&
                   <div 
                     className="w-min flex justify-center ml-3"
                     onClick={() => submitFoodTruck()}
@@ -199,7 +211,7 @@ const FoodTruck = ({
                       borderColor={'black'}
                       borderRadius={true}
                       loading={loading}
-                      loadingType={'createEvent'}
+                      loadingType={'createFoodTruck'}
                       showSVG={false}
                       svg={'arrowRight'}
                       svgColor={'white'}
@@ -207,10 +219,10 @@ const FoodTruck = ({
                     />
                   </div>
                 }
-                {event && checkObjectValues(event, images) && edit == 'event' &&
+                {foodTruck && checkObjectValues(foodTruck, images) && edit == 'foodTruck' &&
                   <div 
                     className="w-min flex justify-center ml-3"
-                    onClick={() => submitUpdateEvent()}
+                    onClick={() => submitUpdateFoodTruck()}
                   >
                     <Button 
                       label='Update'
@@ -223,7 +235,7 @@ const FoodTruck = ({
                       borderColor={'black'}
                       borderRadius={true}
                       loading={loading}
-                      loadingType={'updateEvent'}
+                      loadingType={'updateFoodTruck'}
                       showSVG={false}
                       svg={'arrowRight'}
                       svgColor={'white'}
@@ -249,7 +261,7 @@ const FoodTruck = ({
                 <h3 className="flex flex-col">
                   <span 
                     className="font-poppins text-[16px] font-[400] text-gold underline dark:text-white hover:cursor-pointer"
-                    onClick={() => (dispatch(changeView('events'), dispatch(changePopup(''))))}
+                    onClick={() => (dispatch(changeView('foodTrucks'), dispatch(changePopup(''))))}
                   >
                     view all
                   </span>
@@ -258,30 +270,12 @@ const FoodTruck = ({
             <div className="p-4 md:p-5 space-y-4 h-[40rem] overflow-y-scroll">
               <InputField 
                 label="name"
-                item={event}
+                item={foodTruck}
                 property={'name'}
                 dispatch={dispatch}
-                stateMethod={changeEventValue}
+                stateMethod={changeFoodTruckValue}
                 id="name"
               />
-              {/* <InputField 
-                label="date"
-                item={event}
-                property={'date'}
-                dispatch={dispatch}
-                stateMethod={changeEventValue}
-                id="date"
-              /> */}
-              {/* { event.date &&  <div className="p-3 bg-gray-200">Current date: {event.date}</div>} */}
-              <div className="w-[100%] border-schemefour border-[1px] rounded-md py-3">
-                <DatePicker 
-                  className="datepicker"
-                  selected={startDate} 
-                  onChange={(date) => (
-                    setStartDate(date)
-                  )} 
-                />
-              </div>
               <UploadButton
                 svg={true}
                 svgType={'upload'}
@@ -291,10 +285,10 @@ const FoodTruck = ({
                 label={'Upload Images'}
                 formType={'file'}
                 id="imageFiles"
-                item={event}
+                item={foodTruck}
                 property={'images'}
                 dispatch={dispatch}
-                stateMethod={changeEventImages}
+                stateMethod={changeFoodTruckImages}
                 setMessage={setMessage}
                 setImages={setImages}
                 images={images}
@@ -328,7 +322,7 @@ const FoodTruck = ({
                     className="absolute top-2 right-1 w-[30px] h-[30px] rounded-[50%] flex justify-center items-center hover:cursor-pointer"
                     onClick={(e) => (e.stopPropagation(), images[idx].url ? deleteImage(item.url) : setImages(removeItemByIndex(idx, images))) }
                   >
-                  { loading == `deleteEventImage-${item.url}` 
+                  { loading == `deleteFoodTruckImage-${item.url}` 
                     ? 
                     <div className="loading border-r-gold after:border-r-gold before:border-l-gold mr-3"></div>
                     :
@@ -343,14 +337,6 @@ const FoodTruck = ({
                   </div>
                 </a>
               ))}
-              { event.description &&  <div className="p-3 bg-gray-200" dangerouslySetInnerHTML={{ __html: event.description }}></div>}
-              <Editor
-                editorState={editorState}
-                onEditorStateChange={setEditorState}
-                wrapperClassName="wrapper-class"
-                editorClassName="editor-class"
-                toolbarClassName="toolbar-class"
-              />
             </div>
           </div>
       </div>

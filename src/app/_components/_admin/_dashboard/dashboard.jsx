@@ -8,8 +8,10 @@ const Dashboard = ({
   changeEdit,
   resetBeer,
   resetEvent,
+  resetFoodTruck,
   beers,
-  events
+  events,
+  foodTrucks
 }) => {
   
   return (
@@ -104,14 +106,14 @@ const Dashboard = ({
               <div className="w-[45%] h-[172px] rounded-[20px] shadow-xl flex p-[30px]">
                 <div className="flex w-full">
                   <div className="w-[60%] flex flex-col">
-                    <h1 className="text-[32px] font-poppins font-[900]">{events.length > 0 ? events.length : '0'}</h1>
-                    <h2 className="pt-[5px] text-[18px] font-poppins font-[500]">Total Events</h2>
+                    <h1 className="text-[32px] font-poppins font-[900]">{foodTrucks.length > 0 ? foodTrucks.length : '0'}</h1>
+                    <h2 className="pt-[5px] text-[18px] font-poppins font-[500]">Total Food Trucks</h2>
                     <div className="text-[16px] font-[400] font-poppins pt-[10px] text-grey"></div>
                   </div>
                   <div className="w-[40%] flex flex-col items-center">
                     <div 
                       className="hover:cursor-pointer transition-all ease-linear hover:translate-y-1"
-                      onClick={() => (dispatch(changePopup('newEvent'), dispatch(changeEdit('')), dispatch(resetEvent())))}
+                      onClick={() => dispatch(changeView('foodTrucks'))}
                     >
                       <SVG
                         svg={'plus'}
@@ -121,10 +123,10 @@ const Dashboard = ({
                       >
                       </SVG>
                     </div>
-                    <h1 className="text-[14px] font-poppins font-[400] mt-5">New Event</h1>
+                    <h1 className="text-[14px] font-poppins font-[400] mt-5">New Truck</h1>
                     <h1 
                       className="text-[16px] font-poppins font-[400] underline text-blue-400 hover:cursor-pointer"
-                      onClick={() => dispatch(changeView('events'))}
+                      onClick={() => dispatch(changeView('foodTrucks'))}
                     >
                       view all
                     </h1>
