@@ -108,7 +108,7 @@ const Beers = ({}) => {
             />
           </div>
           <div className="font-[600] uppercase py-3">Events</div>
-          <div>Check out our upcoming events – or inquire about having your next hangout in our taproom.</div>
+          <div>Check out our upcoming events – or inquire about having your next hangout in our taproom. For events please email us at <a className="underline underline-offset-8">events@ministrybrewing.com</a> </div>
         </div>
         <div className="w-1/4 flex justify-center flex-col text-center max-md:w-full">
           <div className="flex justify-center h-[80px]">
