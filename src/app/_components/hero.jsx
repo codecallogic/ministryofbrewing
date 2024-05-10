@@ -3,9 +3,9 @@ const Hero = ({}) => {
   
   return (
     <div className="flex justify-center items-center text-[20px] font-[600] w-full h-full">
-      <div className="w-[500px] bg-[#6B6867] opacity-80 py-8 text-white rounded-2xl shadow-2xl  gap-y-3 max-md:h-[450px]">
+      <div className="w-[500px] bg-[#6B6867] opacity-80 py-8 text-white rounded-2xl shadow-2xl  gap-y-3 border-schemetwo border-[2px]  max-md:h-[450px]">
         <section
-          className="w-full flex flex-col justify-center items-center h-full"
+          className="w-full flex flex-col justify-center items-center h-full "
         >
           <h1 className="mb-5 text-[22px] underline underline-offset-4 max-sm:mb-0">Hours</h1>
           <ul className="w-full flex flex-col justify-center items-center h-full font-[600] px-[30px] mb-5 max-sm:px-[10px]">
