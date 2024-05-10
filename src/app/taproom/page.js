@@ -67,6 +67,7 @@ const Taproom = ({}) => {
       >
         <div className="grid grid-cols-2 max-lg:grid-cols-1">
           {beers && beers.map((item, idx) => 
+            item.taproomList &&
             <div 
               className="flex gap-x-5 w-[400px] h-[200px] max-sm:w-[300px]"
               key={idx}

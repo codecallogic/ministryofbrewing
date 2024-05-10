@@ -9,6 +9,8 @@ query allBeers($id: ID!, $token: String!) {
     style,
     images {
       url
-    }
+    },
+    beerList,
+    taproomList
   }
 }`

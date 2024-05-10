@@ -5,7 +5,9 @@ const initialState = {
     name: '',
     abv: '',
     style: '',
-    images: []
+    images: [],
+    beerList: false,
+    taproomList: false
   }
 }
 

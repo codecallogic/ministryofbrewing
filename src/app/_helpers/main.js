@@ -61,8 +61,9 @@ export const changeInputType = (id, fromType, toType) => {
 
 export const checkObjectValues = (data, other) => {
   let array = []
-
+  
   for(let key in data){
+    
     if(data[key].length > 0){
       array.push(true)
     }

@@ -6,6 +6,9 @@ import { useWindowSize } from '@react-hook/window-size'
 import { useCookies } from "react-cookie"
 import { useMutation, useQuery } from '@apollo/client'
 
+///// QUERIES
+import GET_FOOD_TRUCKS from '@/app/_queries/fetchFoodTrucks'
+
 //// COMPONENTS
 import Nav from '@/app/_components/nav'
 import Footer from '@/app/_components/footer'
@@ -15,6 +18,10 @@ const FoodTrucks = ({}) => {
   
   const [width, height]                       = useWindowSize()
   const [windowWidth, setWindowWidth]         = useState()
+  const [foodTrucks, setFoodTrucks]           = useState([])
+
+  //// DATA
+  const dataFoodTrucks                        = useQuery(GET_FOOD_TRUCKS, { variables: { id: '109JF0SA9DUFJ0J3', token: 'DIFJAOSDIJFOSDIJFI'}})
 
   useEffect(() => {
     setWindowWidth(window.innerWidth)
@@ -23,6 +30,10 @@ const FoodTrucks = ({}) => {
   useEffect(() => {
     setWindowWidth(width)
   }, [width])
+
+  useEffect(() => {
+    if(dataFoodTrucks.data) setFoodTrucks(dataFoodTrucks.data.allFoodTrucks)
+  }, [dataFoodTrucks])
   
   return (
     <>
@@ -40,8 +51,8 @@ const FoodTrucks = ({}) => {
       >
         <h1 className="text-[24px] font-[600] text-schemefive uppercase">Food Trucks</h1>
         <div className="flex justify-center h-full">
-          <Image
-            src="/assets/foodtrucks.png"
+          <img
+            src={ foodTrucks[0] ? foodTrucks[0].images[0].url : `https://via.placeholder.com/300`}
             width={1000}
             height={400}
             alt="Food Trucks"

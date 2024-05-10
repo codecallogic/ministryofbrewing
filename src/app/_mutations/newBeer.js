@@ -5,13 +5,17 @@ mutation newBeer(
     $name: String!,
     $abv: String!,
     $style: String!,
-    $images: [ImageInputType!]!
+    $images: [ImageInputType!]!,
+    $beerList: Boolean!,
+    $taproomList: Boolean!
 ) {
   newBeer(
     name: $name,
     abv: $abv,
     style: $style,
-    images: $images
+    images: $images,
+    beerList: $beerList,
+    taproomList: $taproomList
 ) {
     message
   }

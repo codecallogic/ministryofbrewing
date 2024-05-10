@@ -1,5 +1,6 @@
 
 import SVG from '@/app/_libs/svg'
+import { useEffect } from 'react'
 
 //// HELPERS
 import { initApp } from '@/app/_helpers/main'
@@ -50,8 +51,8 @@ const Nav = ({
               </div>
             </div>
             <div className="flex flex-col mx-3 text-white">
-              <h2 className="font-[600] text-[18px]">first last name</h2>
-              <h2 className="font-[400] text-[16px]">test@gmail.com</h2>
+              <h2 className="font-[600] text-[18px]">{user ? user.firstName : 'N/A'} {user ? user.lastName : 'N/A'}</h2>
+              <h2 className="font-[400] text-[16px]">{user ? user.email.substring(0, 20) : 'N/A' }</h2>
             </div>
           </div>
           <div className="w-[345px] px-[50px] text-[18px] font-[900] pt-[20px] text-white">Main Menu</div>

@@ -6,14 +6,18 @@ mutation updateBeer(
     $name: String!,
     $abv: String!,
     $style: String!,
-    $images: [ImageInputType!]!
+    $images: [ImageInputType!]!,
+    $beerList: Boolean!,
+    $taproomList: Boolean!
 ) {
   updateBeer(
     id: $id,
     name: $name,
     abv: $abv,
     style: $style,
-    images: $images
+    images: $images,
+    beerList: $beerList,
+    taproomList: $taproomList
 ) {
     message
   }
