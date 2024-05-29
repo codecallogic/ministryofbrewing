@@ -2,10 +2,12 @@ import { gql } from '@apollo/client';
 
 export default gql`
 mutation deleteEvent(
-    $id: ID!
+    $id: ID!,
+    $token: String!
 ) {
   deleteEvent(
-    id: $id
+    id: $id,
+    token: $token
 ) {
     message
   }

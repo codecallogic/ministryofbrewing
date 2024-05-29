@@ -23,7 +23,8 @@ const NewBeer = ({
   edit,
   updateBeer,
   refetch,
-  deleteBeerImage
+  deleteBeerImage,
+  token
 }) => {
 
   const [message, setMessage]                         = useState('')
@@ -58,7 +59,8 @@ const NewBeer = ({
           style: beer.style,
           images: array,
           beerList: beer.beerList,
-          taproomList: beer.taproomList
+          taproomList: beer.taproomList,
+          token: token
         }
       })
 
@@ -105,7 +107,8 @@ const NewBeer = ({
           style: beer.style,
           images: array,
           beerList: beer.beerList,
-          taproomList: beer.taproomList
+          taproomList: beer.taproomList,
+          token: token
         }
       })
 
@@ -130,7 +133,8 @@ const NewBeer = ({
         variables: {
           id: beer.id,
           images: images,
-          url: url
+          url: url,
+          token: token
         }
       })
 

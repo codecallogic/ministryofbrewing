@@ -5,13 +5,15 @@ mutation newEvent(
     $name: String!,
     $description: String!,
     $date: String!,
-    $images: [ImageInputType!]!
+    $images: [ImageInputType!]!,
+    $token: String!
 ) {
   newEvent(
     name: $name,
     description: $description,
     date: $date,
-    images: $images
+    images: $images,
+    token: $token
 ) {
     message
   }

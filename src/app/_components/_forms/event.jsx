@@ -30,7 +30,8 @@ const NewEvent = ({
   edit,
   updateEvent,
   refetch,
-  deleteEventImage
+  deleteEventImage,
+  token
 }) => {
 
   const [message, setMessage]                         = useState('')
@@ -64,7 +65,8 @@ const NewEvent = ({
           name: event.name,
           description: convertedContent,
           date: event.date,
-          images: array
+          images: array,
+          token: token
         }
       })
 
@@ -109,7 +111,8 @@ const NewEvent = ({
           name: event.name,
           description: convertedContent !== '<p></p>' ? convertedContent : event.description,
           date: event.date,
-          images: array
+          images: array,
+          token: token
         }
       })
 
@@ -134,7 +137,8 @@ const NewEvent = ({
         variables: {
           id: event.id,
           images: images,
-          url: url
+          url: url,
+          token: token
         }
       })
 

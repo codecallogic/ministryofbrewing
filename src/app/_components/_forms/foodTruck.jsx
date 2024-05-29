@@ -30,7 +30,8 @@ const FoodTruck = ({
   edit,
   updateFoodTruck,
   refetch,
-  deleteFoodTruckImage
+  deleteFoodTruckImage,
+  token
 }) => {
 
   const [message, setMessage]                         = useState('')
@@ -62,7 +63,8 @@ const FoodTruck = ({
       const response = await newFoodTruck({
         variables: {
           name: foodTruck.name,
-          images: array
+          images: array,
+          token: token
         }
       })
 
@@ -106,7 +108,8 @@ const FoodTruck = ({
           id: foodTruck.id,
           name: foodTruck.name,
           images: array,
-          oldImages: foodTruck.images
+          oldImages: foodTruck.images,
+          token: token
         }
       })
 
@@ -151,7 +154,8 @@ const FoodTruck = ({
         variables: {
           id: foodTruck.id,
           images: images,
-          url: url
+          url: url,
+          token: token
         }
       })
 

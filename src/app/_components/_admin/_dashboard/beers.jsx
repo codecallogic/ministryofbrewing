@@ -10,7 +10,8 @@ const Beers = ({
   beers,
   editBeer,
   deleteBeer,
-  refetch
+  refetch,
+  token
 }) => {
   
   const [dropdown, setDropdown] = useState('')
@@ -24,7 +25,8 @@ const Beers = ({
     try {
       const response = await deleteBeer({
         variables: {
-          id: id
+          id: id,
+          token
         }
       })
 
@@ -123,13 +125,13 @@ const Beers = ({
                   <div className="relative top-[100%] left-[-180px]">
                     <div className="absolute w-[200px] rounded-xl bg-slate-200">
                       <div 
-                        className="p-2 hover:bg-gold rounded-xl hover:text-white"
+                        className="p-2 hover:bg-gold rounded-xl"
                         onClick={(e) => (dispatch(changePopup('newBeer')), dispatch(changeEdit('beer')), dispatch(editBeer({ id: item.id, items: beers}), setDropdown('')))}
                       >
                         Edit Beer
                       </div>
                       <div 
-                        className="p-2 hover:bg-gold rounded-xl hover:text-white"
+                        className="p-2 hover:bg-gold rounded-xl"
                         onClick={(e) => (submitDeleteBeer(item.id), setDropdown(''))}
                       >
                         Delete

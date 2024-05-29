@@ -7,7 +7,8 @@ mutation newBeer(
     $style: String!,
     $images: [ImageInputType!]!,
     $beerList: Boolean!,
-    $taproomList: Boolean!
+    $taproomList: Boolean!,
+    $token: String!
 ) {
   newBeer(
     name: $name,
@@ -15,7 +16,8 @@ mutation newBeer(
     style: $style,
     images: $images,
     beerList: $beerList,
-    taproomList: $taproomList
+    taproomList: $taproomList,
+    token: $token
 ) {
     message
   }

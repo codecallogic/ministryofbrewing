@@ -2,10 +2,12 @@ import { gql } from '@apollo/client';
 
 export default gql`
 mutation deleteFoodTruck(
-    $id: ID!
+    $id: ID!,
+    $token: String!
 ) {
   deleteFoodTruck(
-    id: $id
+    id: $id,
+    token: $token
 ) {
     message
   }

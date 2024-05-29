@@ -189,6 +189,7 @@ const Admin = ({}) => {
             editBeer={editBeer}
             deleteBeer={deleteBeer}
             refetch={refetchBeers}
+            token={cookies.adminToken}
           />
         }
         { view == 'events' &&
@@ -201,6 +202,7 @@ const Admin = ({}) => {
             editEvent={editEvent}
             deleteEvent={deleteEvent}
             refetch={refetchEvents}
+            token={cookies.adminToken}
           />
         }
         { view == 'foodTrucks' &&
@@ -213,6 +215,7 @@ const Admin = ({}) => {
             editFoodTruck={editFoodTruck}
             deleteFoodTruck={deleteFoodTruck}
             refetch={refetchFoodTrucks}
+            token={cookies.adminToken}
           />
         }
         { popup == 'newBeer' &&
@@ -230,6 +233,7 @@ const Admin = ({}) => {
             updateBeer={updateBeer}
             refetch={refetchBeers}
             deleteBeerImage={deleteBeerImage}
+            token={cookies.adminToken}
           >
           </NewBeer>
         }
@@ -248,6 +252,7 @@ const Admin = ({}) => {
             updateEvent={updateEvent}
             refetch={refetchEvents}
             deleteEventImage={deleteEventImage}
+            token={cookies.adminToken}
           >
           </NewEvent>
         }
@@ -266,6 +271,7 @@ const Admin = ({}) => {
             updateFoodTruck={updateFoodTruck}
             refetch={refetchFoodTrucks}
             deleteFoodTruckImage={deleteFoodTruckImage}
+            token={cookies.adminToken}
           >
           </NewFoodTruck>
         }

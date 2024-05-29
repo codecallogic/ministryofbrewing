@@ -4,12 +4,14 @@ export default gql`
 mutation DeleteEventImage(
     $id: ID!,
     $images: [ImageInputType!]!,
-    $url: String!
+    $url: String!,
+    $token: String!
 ) {
   deleteEventImage (
     id: $id,
     images: $images,
-    url: $url
+    url: $url,
+    token: $token
 ) {
     message
   }

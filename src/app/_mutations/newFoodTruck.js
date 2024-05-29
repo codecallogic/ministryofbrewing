@@ -3,11 +3,13 @@ import { gql } from '@apollo/client';
 export default gql`
 mutation newFoodTruck(
     $name: String!,
-    $images: [ImageInputType!]!
+    $images: [ImageInputType!]!,
+    $token: String!
 ) {
   newFoodTruck(
     name: $name,
-    images: $images
+    images: $images,
+    token: $token
 ) {
     message
   }

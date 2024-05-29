@@ -6,14 +6,16 @@ mutation updateEvent(
     $name: String!,
     $description: String!,
     $date: String!,
-    $images: [ImageInputType!]!
+    $images: [ImageInputType!]!,
+    $token: String!
 ) {
   updateEvent(
     id: $id,
     name: $name,
     description: $description,
     date: $date,
-    images: $images
+    images: $images,
+    token: $token
 ) {
     message
   }

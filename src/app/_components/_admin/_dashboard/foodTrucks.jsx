@@ -118,7 +118,7 @@ const FoodTrucks = ({
                   <div className="relative top-[100%] left-[-180px]">
                     <div className="absolute w-[200px] rounded-xl bg-slate-200">
                       <div 
-                        className="p-2 hover:bg-gold rounded-xl hover:text-white"
+                        className="p-2 hover:bg-gold rounded-xl "
                         onClick={(e) => (dispatch(changePopup('newFoodTruck')), dispatch(changeEdit('foodTruck')), dispatch(editFoodTruck({ id: item.id, items: foodTrucks}), setDropdown('')))}
                       >
                         Edit Food Truck

@@ -10,7 +10,8 @@ const Events = ({
   events,
   editEvent,
   deleteEvent,
-  refetch
+  refetch,
+  token
 }) => {
   
   const [dropdown, setDropdown] = useState('')
@@ -24,7 +25,8 @@ const Events = ({
     try {
       const response = await deleteEvent({
         variables: {
-          id: id
+          id: id,
+          token: token
         }
       })
 
@@ -122,13 +124,13 @@ const Events = ({
                   <div className="relative top-[100%] left-[-180px]">
                     <div className="absolute w-[200px] rounded-xl bg-slate-200">
                       <div 
-                        className="p-2 hover:bg-gold rounded-xl hover:text-white"
+                        className="p-2 hover:bg-gold rounded-xl"
                         onClick={(e) => (dispatch(changePopup('newEvent')), dispatch(changeEdit('event')), dispatch(editEvent({ id: item.id, items: events}), setDropdown('')))}
                       >
                         Edit Event
                       </div>
                       <div 
-                        className="p-2 hover:bg-gold rounded-xl hover:text-white"
+                        className="p-2 hover:bg-gold rounded-xl"
                         onClick={(e) => (submitDeleteEvent(item.id), setDropdown(''))}
                       >
                         Delete

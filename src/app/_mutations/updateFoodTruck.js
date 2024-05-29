@@ -5,13 +5,15 @@ mutation updateFoodTruck(
     $id: ID!,
     $name: String!,
     $images: [ImageInputType!]!,
-    $oldImages: [ImageInputType!]!
+    $oldImages: [ImageInputType!]!,
+    $token: String!
 ) {
   updateFoodTruck(
     id: $id,
     name: $name,
     images: $images,
-    oldImages: $oldImages
+    oldImages: $oldImages,
+    token: $token
 ) {
     message
   }
