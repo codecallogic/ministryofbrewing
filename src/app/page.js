@@ -66,7 +66,7 @@ export default function Home() {
             />
           </div>
           <div className="font-[600] uppercase py-3">Draft List</div>
-          <div>Find the latest taproom offerings – including new seasonals and one-offs. And <span className="text-blue-500" onClick={(e) => (e.stopPropagation(), window.location.href = '/non-beer-list/')}>click here</span> for our current non-beer offerings.</div>
+          <div>Find the latest taproom offerings – including new seasonals and one-offs.</div>
         </div>
         <div 
           className="w-1/4 flex justify-center flex-col text-center max-md:w-full hover:cursor-pointer"
