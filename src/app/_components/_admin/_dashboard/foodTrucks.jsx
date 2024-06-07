@@ -60,7 +60,7 @@ const FoodTrucks = ({
       }
     </div>
     <div 
-      className="px-[60px] pt-[20px] flex items-center bg-white gap-x-3 hover:cursor-pointer"
+      className="px-[60px] pt-[20px] flex items-center bg-white gap-x-3 hover:cursor-pointer text-black"
       onClick={() => dispatch(changeView('dashboard'))}
     >
       <SVG
@@ -116,7 +116,7 @@ const FoodTrucks = ({
                 </div>
                 { dropdown == `${item.id}editInfo` &&
                   <div className="relative top-[100%] left-[-180px]">
-                    <div className="absolute w-[200px] rounded-xl bg-slate-200">
+                    <div className="absolute w-[200px] rounded-xl bg-slate-200 text-black">
                       <div 
                         className="p-2 hover:bg-gold rounded-xl "
                         onClick={(e) => (dispatch(changePopup('newFoodTruck')), dispatch(changeEdit('foodTruck')), dispatch(editFoodTruck({ id: item.id, items: foodTrucks}), setDropdown('')))}

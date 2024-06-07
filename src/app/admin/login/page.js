@@ -69,7 +69,7 @@ const AdminLogin = ({}) => {
               <input 
                 type="email" 
                 id="hs-floating-input-email" 
-                className="peer p-5 block w-full border-schemethree rounded-lg text-sm placeholder:text-transparent focus:border-schemethree focus:ring-schemethree disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-black dark:focus:ring-gray-600
+                className="peer p-5 block w-full border-schemethree rounded-lg text-sm placeholder:text-transparent focus:border-schemethree focus:ring-schemethree disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:focus:ring-gray-600
                 focus:pt-7
                 focus:pb-3
                 [&:not(:placeholder-shown)]:pt-7
@@ -94,7 +94,7 @@ const AdminLogin = ({}) => {
               <input 
                 id="loginPassword" 
                 type="password" 
-                className="peer p-5 block w-full border-schemethree rounded-lg text-sm placeholder:text-transparent focus:border-schemethree focus:ring-schemethree disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-black dark:focus:ring-gray-600
+                className="peer p-5 block w-full border-schemethree rounded-lg text-sm placeholder:text-transparent focus:border-schemethree focus:ring-schemethree disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:focus:ring-gray-600
                 focus:pt-7
                 focus:pb-3
                 [&:not(:placeholder-shown)]:pt-7

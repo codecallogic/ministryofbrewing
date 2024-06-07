@@ -277,9 +277,9 @@ const NewEvent = ({
                 id="date"
               /> */}
               {/* { event.date &&  <div className="p-3 bg-gray-200">Current date: {event.date}</div>} */}
-              <div className="w-[100%] border-schemefour border-[1px] rounded-md py-3">
+              <div className="w-[100%] border-schemefour border-[1px] text-white rounded-md py-3">
                 <DatePicker 
-                  className="datepicker"
+                  className="datepicker bg-transparent"
                   selected={startDate} 
                   onChange={(date) => (
                     setStartDate(date)
@@ -347,7 +347,7 @@ const NewEvent = ({
                   </div>
                 </a>
               ))}
-              { event.description &&  <div className="p-3 bg-gray-200" dangerouslySetInnerHTML={{ __html: event.description }}></div>}
+              { event.description &&  <div className="p-3 bg-gray-200 text-black " dangerouslySetInnerHTML={{ __html: event.description }}></div>}
               <Editor
                 editorState={editorState}
                 onEditorStateChange={setEditorState}

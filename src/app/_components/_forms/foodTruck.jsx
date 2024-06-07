@@ -82,7 +82,7 @@ const FoodTruck = ({
   }
 
   const submitUpdateFoodTruck = async () => {
-
+  
     try {
 
       let array = []

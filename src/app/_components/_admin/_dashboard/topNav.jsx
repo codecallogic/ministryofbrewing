@@ -67,7 +67,7 @@ const TopNav = ({
         </div>
       </button>
       <h1 
-        className="text-[32px] font-[700] ml-[20px] flex-grow hover:cursor-pointer"
+        className="text-[32px] font-[700] ml-[20px] flex-grow hover:cursor-pointer text-black"
         onClick={() => dispatch(changeView('dashboard'))}
       >
         Dashboard

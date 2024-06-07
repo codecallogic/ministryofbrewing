@@ -45,12 +45,12 @@ const Dashboard = ({
             <div className="w-[100%] flex flex-wrap gap-x-[38px]">
               <div className="w-[45%] h-[172px] rounded-[20px] shadow-xl flex p-[30px]">
                 <div className="flex w-full">
-                  <div className="w-[60%] flex flex-col">
+                  <div className="w-[60%] flex flex-col text-black">
                     <h1 className="text-[32px] font-poppins font-[900]">{beers.length > 0 ? beers.length : '0'}</h1>
                     <h2 className="pt-[5px] text-[18px] font-poppins font-[500]">Total Beers</h2>
                     <div className="text-[16px] font-[400] font-poppins pt-[10px] text-grey"></div>
                   </div>
-                  <div className="w-[40%] flex flex-col items-center">
+                  <div className="w-[40%] flex flex-col items-center text-black">
                     <div 
                       className="hover:cursor-pointer transition-all ease-linear hover:translate-y-1"
                       onClick={() => (dispatch(changePopup('newBeer'), dispatch(changeEdit('')), dispatch(resetBeer())))}
@@ -74,7 +74,7 @@ const Dashboard = ({
                 </div>
               </div>
               <div className="w-[45%] h-[172px] rounded-[20px] shadow-xl flex p-[30px]">
-                <div className="flex w-full">
+                <div className="flex w-full text-black">
                   <div className="w-[60%] flex flex-col">
                     <h1 className="text-[32px] font-poppins font-[900]">{events.length > 0 ? events.length : '0'}</h1>
                     <h2 className="pt-[5px] text-[18px] font-poppins font-[500]">Total Events</h2>
@@ -104,7 +104,7 @@ const Dashboard = ({
                 </div>
               </div>
               <div className="w-[45%] h-[172px] rounded-[20px] shadow-xl flex p-[30px]">
-                <div className="flex w-full">
+                <div className="flex w-full text-black">
                   <div className="w-[60%] flex flex-col">
                     <h1 className="text-[32px] font-poppins font-[900]">{foodTrucks.length > 0 ? foodTrucks.length : '0'}</h1>
                     <h2 className="pt-[5px] text-[18px] font-poppins font-[500]">Total Food Trucks</h2>

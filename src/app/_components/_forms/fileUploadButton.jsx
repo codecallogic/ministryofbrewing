@@ -21,7 +21,7 @@ const FormButton = ({
   return (
     <label
       htmlFor={id}
-      className="flex items-center gap-x-2 w-full p-5 rounded-2xl border-gold border-[1px] text-center capitalize text-[18px] text-black hover:cursor-pointer"
+      className="flex items-center gap-x-2 w-full p-5 rounded-2xl border-gold border-[1px] text-center capitalize text-[18px] text-black dark:text-white hover:cursor-pointer"
     >
       <input
         id={id}

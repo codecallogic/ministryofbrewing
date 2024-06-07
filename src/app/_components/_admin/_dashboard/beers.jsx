@@ -45,7 +45,7 @@ const Beers = ({
     <>
     <div className="flex justify-center">
       {message &&
-        <div className="text-center py-3 bg-red w-[300px] mt-3 rounded-xl text-white font-[500] text-[16px] relative">
+        <div className="text-center py-3 bg-red w-[300px] mt-3 rounded-xl text-black font-[500] text-[16px] relative">
           <div 
             className="absolute top-[-5px] right-0 bg-white p-2 rounded-[50%] hover:cursor-pointer"
             onClick={() => setMessage('')}
@@ -77,11 +77,11 @@ const Beers = ({
       <div className="flex items-center bg-schemetwo p-5 rounded-xl">
         <h1 className="text-[18px] font-poppins font-[600] text-white">All Beers</h1>
       </div>
-      <div className="mt-[40px] flex flex-col gap-y-4">
+      <div className="mt-[40px] flex flex-col gap-y-4 text-black">
         { beers && beers.map((item, idx) => 
           <div 
             key={idx}
-            className="w-full rounded-[20px] px-3 py-3 h-[200px] shadow-lg flex items-start gap-x-5 gap-y-2 max-xl:h-[100%] max-xl:items-start max-xl:justify-center max-xl:w-[100%] relative"
+            className="w-full rounded-[20px] px-3 py-3 h-[200px] text-black shadow-lg flex items-start gap-x-5 gap-y-2 max-xl:h-[100%] max-xl:items-start max-xl:justify-center max-xl:w-[100%] relative"
           >
             <h3 className="text-[18px] font-poppins font-[500] text-gol">
               <span>{item.name ? item.name : 'no name'}</span>
@@ -122,7 +122,7 @@ const Beers = ({
                   ></SVG>
                 </div>
                 { dropdown == `${item.id}editInfo` &&
-                  <div className="relative top-[100%] left-[-180px]">
+                  <div className="relative top-[100%] left-[-180px] text-black">
                     <div className="absolute w-[200px] rounded-xl bg-slate-200">
                       <div 
                         className="p-2 hover:bg-gold rounded-xl"

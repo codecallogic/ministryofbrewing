@@ -34,7 +34,7 @@ const InputField = ({
           disabled:pointer-events-none 
           dark:bg-slate-900 
           dark:border-gray-700 
-          dark:text-black 
+          dark:text-white 
           dark:focus:ring-gray-600
           focus:pt-7
           focus:pb-3

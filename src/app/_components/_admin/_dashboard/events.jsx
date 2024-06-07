@@ -45,7 +45,7 @@ const Events = ({
     <>
     <div className="flex justify-center">
       {message &&
-        <div className="text-center py-3 bg-red w-[300px] mt-3 rounded-xl text-white font-[500] text-[16px] relative">
+        <div className="text-center py-3 bg-red w-[300px] mt-3 rounded-xl text-black font-[500] text-[16px] relative">
           <div 
             className="absolute top-[-5px] right-0 bg-white p-2 rounded-[50%] hover:cursor-pointer"
             onClick={() => setMessage('')}
