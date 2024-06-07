@@ -189,10 +189,6 @@ const FoodTruck = ({
   useEffect(() => {
     if(foodTruck.images) setImages(foodTruck.images)
   }, [foodTruck.images]) 
-
-  useEffect(() => {
-    if(images.length == 2) submitUpdateFoodTruck()
-  }, [images])
   
   return (
     <div id="default-modal" tabIndex="-1" aria-hidden="true" className="overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex bg-[rgba(0, 0, 0, 0.5)] justify-center items-center w-full md:inset-0 h-[calc(100%)] max-h-full bg-black/50">
