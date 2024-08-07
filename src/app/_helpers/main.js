@@ -39,6 +39,7 @@ export const dateNow = () => {
   var year = date.getUTCFullYear()
 
   return `${month} ${day}, ${year}, ${hr}:${min} ${ampm}`
+
 }
 
 export const verifyEmail = (email) => {
@@ -83,3 +84,28 @@ export const removeItemByIndex = (index, array) => {
   newArray.splice(index, 1);
   return newArray;
 }
+
+export const validateNumber = (type) => {
+  const input = document.getElementById(type)
+  
+  const regex = /[^0-9|\n\r]/g
+
+  if(input.value && type == 'sizeOne' || input.value && type == 'sizeTwo') {
+    return input.value = input.value.split(regex).join('') + ' in'
+  }
+
+  if(input.value && type == 'thickness') {
+    return input.value = input.value.split(regex).join('') + ' cm'
+  }
+
+  if(input.value == ' in') return input.value = ''
+  if(input.value == ' cm') return input.value = ''
+
+  input.value = input.value.split(regex).join('')
+}
+
+export const validateEmail = (email) => {
+  // Simple email regex pattern
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};

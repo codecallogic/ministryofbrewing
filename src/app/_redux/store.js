@@ -4,6 +4,7 @@ import navigationReducer from './features/navigationSlice'
 import beerReducer from './features/beerSlice'
 import eventReducer from './features/eventSlice'
 import foodTruckReducer from './features/foodTruckSlice'
+import eventContactReducer from "./features/eventContact";
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     navigationReducer,
     beerReducer,
     eventReducer,
+    eventContactReducer,
     foodTruckReducer
   },
 })

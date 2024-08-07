@@ -24,7 +24,7 @@ const InputField = ({
           w-full 
           border-schemefour
           border-[1px]
-          rounded-xl
+          rounded-2xl
           text-[18px] 
           placeholder:text-transparent 
           focus:border-schemefour
