@@ -21,6 +21,18 @@ import SEND_INQUIRY from '@/app/_mutations/sendInquiry'
 import { changeEventContactValue, editEventContact, changeEventContactImages, resetEventContact } from '@/app/_redux/features/eventContact'
 import { validateNumber, validateEmail } from "../_helpers/main";
 
+const useDebouncedEffect = (callback, dependencies, delay) => {
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      callback();
+    }, delay);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [...dependencies, delay]);
+};
+
 const Events = ({}) => {
   
   const dispatch                              = useDispatch()
@@ -31,13 +43,14 @@ const Events = ({}) => {
   const [events, setEvents]                   = useState([])
   const [contact, setContact]                 = useState('')
   const [message, setMessage]                 = useState('')
+  const [debouncedPhone, setDebouncedPhone]   = useState(contact.phone);
   const currentEventContact                   = useSelector((state) => state.eventContactReducer)
 
   //// DATA
   const dataEvents                            = useQuery(GET_EVENTS, { variables: { id: '109JF0SA9DUFJ0J3', token: 'DIFJAOSDIJFOSDIJFI'}})
 
   //// REFETCH
-  const { refetch: refetchEvents  }           = useQuery(GET_EVENTS, { id: '109JF0SA9DUFJ0J3', token: 'DIFJAOSDIJFOSDIJFI' })
+  const { refetch: refetchEvents  }           = useQuery(GET_EVENTS, { variables: { id: '109JF0SA9DUFJ0J3', token: 'DIFJAOSDIJFOSDIJFI'}})
 
   //// MUTATIONS
   const [sendInquiry, { dataSendInquiry, loadingDataInquiry, errorDataInquiry }] = useMutation(SEND_INQUIRY)
@@ -60,24 +73,43 @@ const Events = ({}) => {
   }, [dataEvents])
 
   useEffect(() => {
-    setContact(currentEventContact.value)
-  }, [currentEventContact.value])
+    if (currentEventContact.value) setContact(currentEventContact.value);
+  }, [currentEventContact.value]);
 
-  useEffect(() => {
+  // useEffect(() => {
     
-    if(country && contact && contact.phone.length > 0){
-      const asYouType = new AsYouType(country)
-      asYouType.input(contact.phone)
+  //   if(country && contact && contact.phone.length > 0){
+  //     const asYouType = new AsYouType(country)
+  //     asYouType.input(contact.phone)
       
-      if(asYouType.getNumber()){
-        let number = asYouType.getNumber().number
-        number = new AsYouType(country).input(number)
+  //     if(asYouType.getNumber()){
+  //       let number = asYouType.getNumber().number
+  //       number = new AsYouType(country).input(number)
         
-        dispatch(changeEventContactValue({ value: number, type: 'phone' }))
+  //       dispatch(changeEventContactValue({ value: number, type: 'phone' }))
+  //     }
+  //   }
+    
+  // }, [contact.phone, country, dispatch])
+
+  useDebouncedEffect(() => {
+    if (country && debouncedPhone && debouncedPhone.length > 0) {
+      const asYouType = new AsYouType(country);
+      asYouType.input(debouncedPhone);
+
+      if (asYouType.getNumber()) {
+        let number = asYouType.getNumber().number;
+        number = new AsYouType(country).input(number);
+
+        dispatch(changeEventContactValue({ value: number, type: 'phone' }));
       }
     }
-    
-  }, [contact.phone])
+  }, [debouncedPhone, country, dispatch], 300); // Adjust the delay as needed
+
+  useEffect(() => {
+    setDebouncedPhone(contact.phone);
+  }, [contact.phone]);
+
 
   const submitSendInquiry = async () => {
 
