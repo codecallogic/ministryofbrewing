@@ -191,10 +191,12 @@ const Events = ({}) => {
         className="flex justify-center py-5 flex-col items-center px-[200px] gap-y-3 text-center max-md:px-[20px] my-[20px]"
       >
         <h1 className="text-[28px] font-[600] text-schemetwo uppercase">Private Events</h1>
-        <h3 className="text-[16px] font-[400]">For private events please contact us at <a className="underline underline-offset-8">events@ministryofbrewing.com</a></h3>
+        <h3 className="text-[16px] font-[400] text-center">For private events please contact us at <a className="underline underline-offset-8">events@ministryofbrewing.com</a> or message us below.</h3>
+        <h3 className="text-[16px] font-[400]"></h3>
         {contact &&
           <div className="w-[40%] max-xl:w-[60%] max-lg:w-[80%] bg-gray-100 px-3 py-3 rounded-xl shadow-xl my-5">
             <div className="flex flex-col gap-y-3">
+            <h3 className="text-[20px] font-[600]">Message us</h3>
               <InputField 
                 label="name"
                 item={contact}
@@ -222,7 +224,7 @@ const Events = ({}) => {
                 id="phone"
               />
               <InputField 
-                label="guests"
+                label="guest #"
                 item={contact}
                 property={'guests'}
                 dispatch={dispatch}
