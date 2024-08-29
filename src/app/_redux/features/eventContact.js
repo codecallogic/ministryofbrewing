@@ -5,6 +5,7 @@ const initialState = {
     name: '',
     email: '',
     phone: '',
+    date: '',
     guests: '',
     description: ''
   }

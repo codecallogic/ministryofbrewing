@@ -4,14 +4,14 @@ export default gql`
 mutation sendInquiry(
     $name: String!,
     $email: String!,
-    $phone: String!,
+    $date: String!,
     $guests: String!,
     $description: String!
 ) {
   sendInquiry(
     name: $name,
     email: $email,
-    phone: $phone,
+    date: $date,
     guests: $guests,
     description: $description
 ) {

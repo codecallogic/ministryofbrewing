@@ -12,6 +12,10 @@ import Footer from '@/app/_components/footer'
 import Hero from '@/app/_components/_events/hero'
 import InputField from '@/app/_components/_forms/inputField'
 import Button from '@/app/_components/_forms/button'
+import Calendar from 'react-calendar'
+
+//// CSS
+import 'react-calendar/dist/Calendar.css'
 
 ///// QUERIES AND MUTATIONS
 import GET_EVENTS from '@/app/_queries/fetchEvents'
@@ -37,8 +41,10 @@ const Events = ({}) => {
   
   const dispatch                              = useDispatch()
   const [width, height]                       = useWindowSize()
+  const options                               = { year: 'numeric', month: 'short', day: 'numeric' }
   const [windowWidth, setWindowWidth]         = useState()
   const [loading, setLoading]                 = useState('')
+  const [dropdown, setDropdown]               = useState('')
   const [country, setCountry]                 = useState('US')
   const [events, setEvents]                   = useState([])
   const [contact, setContact]                 = useState('')
@@ -76,46 +82,11 @@ const Events = ({}) => {
     if (currentEventContact.value) setContact(currentEventContact.value);
   }, [currentEventContact.value]);
 
-  // useEffect(() => {
-    
-  //   if(country && contact && contact.phone.length > 0){
-  //     const asYouType = new AsYouType(country)
-  //     asYouType.input(contact.phone)
-      
-  //     if(asYouType.getNumber()){
-  //       let number = asYouType.getNumber().number
-  //       number = new AsYouType(country).input(number)
-        
-  //       dispatch(changeEventContactValue({ value: number, type: 'phone' }))
-  //     }
-  //   }
-    
-  // }, [contact.phone, country, dispatch])
-
-  useDebouncedEffect(() => {
-    if (country && debouncedPhone && debouncedPhone.length > 0) {
-      const asYouType = new AsYouType(country);
-      asYouType.input(debouncedPhone);
-
-      if (asYouType.getNumber()) {
-        let number = asYouType.getNumber().number;
-        number = new AsYouType(country).input(number);
-
-        dispatch(changeEventContactValue({ value: number, type: 'phone' }));
-      }
-    }
-  }, [debouncedPhone, country, dispatch], 300); // Adjust the delay as needed
-
-  useEffect(() => {
-    setDebouncedPhone(contact.phone);
-  }, [contact.phone]);
-
-
   const submitSendInquiry = async () => {
 
     if(!validateEmail(contact.email)) return setMessage('Email is not valid')
     if(!contact.name) return setMessage('Name is required')
-    if(!contact.phone) return setMessage('Phone is required')
+    if(!contact.date) return setMessage('Date is required')
     if(!contact.guests) return setMessage('Guests is required')
     if(!contact.description) return setMessage('Description is required')
 
@@ -127,7 +98,7 @@ const Events = ({}) => {
         variables: {
           name: contact.name,
           email: contact.email,
-          phone: contact.phone,
+          date: contact.date,
           guests: contact.guests,
           description: contact.description
         }
@@ -213,16 +184,47 @@ const Events = ({}) => {
                 stateMethod={changeEventContactValue}
                 id="email"
               />
-              <InputField 
-                label="phone"
-                item={contact}
-                property={'phone'}
-                dispatch={dispatch}
-                stateMethod={changeEventContactValue}
-                validation={true}
-                validationMethod={validateNumber}
-                id="phone"
-              />
+              <ul 
+                className="flex items-center w-full"
+              >
+                <li 
+                  className="relative group w-full"
+                >
+                  <div
+                    className={`flex justify-between border-schemefour border-[1px] rounded-2xl px-3 py-3 bg-white items-center w-[100%] leading-10 tracking-wide text-[14px] [&>*:nth-child(1)]:ml-2 hover:text-schemetwo transition-all ease-in-out capitalize hover:cursor-pointer`}
+                    onClick={() => dropdown == 'date' ? setDropdown('') : setDropdown('date') }
+                  >
+                    {contact.date ? contact.date: 'Choose a date for the event'}
+                    <div
+                      className="w-[20px]"
+                    >
+                      <SVG
+                        svg={'arrowDown'}
+                        alt="Arrow Down"
+                        width={20}
+                        height={20}
+                        schemeOne={'#C91618'}
+                      />
+                    </div>
+                  </div>
+                  <div
+                    className="absolute top-15 z-20 bg-white"
+                    onMouseLeave={() => setDropdown('')}
+                  >
+                    { dropdown == 'date' &&
+                      <Calendar 
+                        minDate={new Date(new Date().getTime() + (24 * 60 * 60 * 1000))}
+                        tileDisabled={({ date }) => date.getDay() === 0}
+                        onChange={(e) => (
+                          dispatch(changeEventContactValue({ value: e.toLocaleDateString('en-US', options), type: 'date' })),
+                          setDropdown('')
+                        )} 
+                        value={contact.date} 
+                      />
+                    }
+                  </div>
+                </li>
+              </ul>
               <InputField 
                 label="guest #"
                 item={contact}
